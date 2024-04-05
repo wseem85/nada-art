@@ -46,11 +46,11 @@ const StyledHeroIntro = styled.div`
   }
 `;
 const images = [
-  "images/hero-img-1.jpg",
-  "images/hero-img-2.jpg",
-  "images/hero-img-3.jpg",
-  "images/hero-img-4.jpg",
-  "images/hero-img-5.jpg",
+  "images/hero-img-1.webp",
+  "images/hero-img-2.webp",
+  "images/hero-img-3.webp",
+  "images/hero-img-4.webp",
+  "images/hero-img-5.webp",
 ];
 const introTextContent = [
   { title: "Start Collecting Art", btn: "Buy Originals" },

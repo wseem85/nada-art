@@ -44,7 +44,7 @@ const IconSocialFooter = styled(ButtonIcon)`
 export default function Footer() {
   return (
     <StyledFooter>
-      <Row type="horizontal">
+      <Row type="horizontal" style={{ justifyContent: "center", gap: "2rem" }}>
         <Heading as="h3"> We Accept</Heading>
         <div>
           <IconAcceptedPayment>

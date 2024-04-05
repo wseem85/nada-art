@@ -12,6 +12,9 @@ const StyledNavLink = styled(NavLink)`
   height: 100%;
   font-weight: bold;
   padding: 0.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--color-brand-500);
+  padding-bottom: 0.6rem;
   /* padding-left: 3rem; */
   /* &::after {
     width: 0;
@@ -31,6 +34,8 @@ const StyledNavLink = styled(NavLink)`
   }
   ${media(breakpoints.sm)} {
     font-size: var(--font-lg);
+    border-bottom: none;
+    padding-bottom: 0rem;
   }
 `;
 const AfterSpan = styled.span``;

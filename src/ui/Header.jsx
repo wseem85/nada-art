@@ -38,7 +38,7 @@ const StyledNavList = styled.ul`
   flex-direction: column;
   position: absolute;
   z-index: 10000;
-  left: 0;
+  right: 0;
   top: 44px;
   background-color: var(--color-brand-200);
   width: calc(100vw - 100px);

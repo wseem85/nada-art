@@ -41,7 +41,7 @@ export default function MeetTheArtist() {
             maxWidth: "100vw",
           }}
         >
-          <ProfileImage src="images/bg-hero.jpg" />
+          <ProfileImage src="images/bg-hero.webp" />
         </div>
         <div
           style={{

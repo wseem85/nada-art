@@ -56,56 +56,56 @@ const Sale = styled.p`
 const images = [
   {
     title: "Title of Image 1",
-    src: "images/img-1.jpg",
+    src: "images/img-1.webp",
     price: 800,
     discount: 10,
     soldOut: false,
   },
   {
     title: " Title of Image 2",
-    src: "images/img-2.jpg",
+    src: "images/img-2.webp",
     price: 1200,
     discount: 20,
     soldOut: false,
   },
   {
     title: " Title of Image 3",
-    src: "images/img-3.jpg",
+    src: "images/img-3.webp",
     price: 600,
     discount: 0,
     soldOut: true,
   },
   {
     title: " Title of Image 4",
-    src: "images/img-4.jpg",
+    src: "images/img-4.webp",
     price: 780,
     discount: 0,
     soldOut: false,
   },
   {
     title: " Title of Image 5",
-    src: "images/img-5.jpg",
+    src: "images/img-5.webp",
     price: 850,
     discount: 12,
     solOut: true,
   },
   {
     title: " Title of Image 6",
-    src: "images/img-6.jpg",
+    src: "images/img-6.webp",
     price: 428,
     discount: 0,
     soldOut: false,
   },
   {
     title: " Title of Image 7",
-    src: "images/img-7.jpg",
+    src: "images/img-7.webp",
     price: 645,
     discount: 12,
     soldOut: false,
   },
   {
     title: " Title of Image 8",
-    src: "images/img-8.jpg",
+    src: "images/img-8.webp",
     price: 427,
     discount: 0,
     soldOut: true,
@@ -136,15 +136,22 @@ export default function NewArtWorks() {
               <Image src={image.src} soldOut={image.soldOut} />
             </div>
             <div
-              style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}
+              style={{
+                display: "flex",
+                gap: "0.5rem",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
             >
-              <h3>{image.title}</h3>
+              <h3 style={{ flex: "1", fontSize: "1.35rem" }}>{image.title}</h3>
               {!image.soldOut && image.discount !== 0 && (
                 <>
                   <p
                     style={{
                       color: "var(--color-brand-400)",
                       textDecoration: "line-through",
+                      fontSize: "0.9rem",
+                      fontWeight: "600",
                       marginLeft: "5rem",
                       marginRight: "1.5rem",
                     }}
@@ -154,7 +161,7 @@ export default function NewArtWorks() {
                   <p
                     style={{
                       color: "var(--color-green-700)",
-                      fontWeight: "bold",
+                      fontWeight: "700",
                     }}
                   >
                     {formatCurrency(
@@ -167,7 +174,7 @@ export default function NewArtWorks() {
                 <p
                   style={{
                     color: "var(--color-grey-700)",
-                    fontWeight: "bold",
+                    fontWeight: "600",
                   }}
                 >
                   {formatCurrency(image.price)}
@@ -178,7 +185,7 @@ export default function NewArtWorks() {
                 <p
                   style={{
                     color: "var(--color-grey-700)",
-                    fontWeight: "bold",
+                    fontWeight: "600",
                   }}
                 >
                   {formatCurrency(

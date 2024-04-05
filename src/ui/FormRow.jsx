@@ -1,13 +1,18 @@
 import styled from "styled-components";
+import { breakpoints } from "../utils/variables";
+import { media } from "../utils/helpers";
 
 const StyledFormRow = styled.div`
   display: grid;
   align-items: center;
-  grid-template-columns: 120px 2fr;
+  grid-template-columns: 1fr;
+
   gap: 2.4rem;
 
   padding: 1.2rem 0;
-
+  ${media(breakpoints.sm)} {
+    grid-template-columns: 120px 2fr;
+  }
   &:first-child {
     padding-top: 0;
   }

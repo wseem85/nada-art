@@ -2,7 +2,9 @@ import { createContext, useContext, useState } from "react";
 
 const AppNavContext = createContext();
 function AppNavProvider({ children }) {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(() => {
+    return window.innerWidth <= 768 ? true : false;
+  });
   const [cartIsOpen, setCartIsOpen] = useState(false);
   return (
     <AppNavContext.Provider

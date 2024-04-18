@@ -8,14 +8,16 @@ const StyledHero = styled.div`
   position: relative;
   height: calc(100vh - 50px);
   width: 100vw;
+
   background-size: cover;
   background-position: center;
+
   transition: background-image 1s ease-in-out;
-  width: 100vw; // Ensure full viewport width
-  height: 100vh; // Ensure full viewport height
-  display: flex; // Allow content to align within
-  justify-content: center; // Center content horizontally
-  align-items: center; // Center content vertically
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--color-brand-50);
 
   ${media(breakpoints.sm)} {
@@ -56,7 +58,7 @@ const introTextContent = [
   { title: "Start Collecting Art", btn: "Buy Originals" },
   { title: "Explore Categories", btn: "Search Now" },
   { title: "Draw Your Thoughts", btn: "Draw Me" },
-  { title: "Get In Touch", btn: "Follow me" },
+  { title: "Get In Touch", btn: "Follow Me" },
   { title: "Know More About the Artist", btn: "About Me" },
 ];
 export default function Hero() {
@@ -77,14 +79,7 @@ export default function Hero() {
   return (
     <StyledHero style={imageStyle}>
       <StyledHeroIntro key={introTextContent.at(currentImageIndex).title}>
-        <Heading
-          as="h1"
-          style={{
-            color: "var(--color-grey-100)",
-            letterSpacing: "2px",
-            textTransform: "uppercase",
-          }}
-        >
+        <Heading as="h1">
           {introTextContent.at(currentImageIndex).title}
         </Heading>
         <Button size="large" variation="secondary">

@@ -27,17 +27,18 @@ const variations = {
     margin-right: auto;
     text-transform: uppercase;
     letter-spacing: 2px;
-    background-color: var(--color-brand-200);
+    background-color: var(--color-brand-300);
     color: var(--color-grey-100);
+    border: 1px solid var(--color-grey-400);
 
     &:hover {
-      background-color: var(--color-brand-700);
+      background-color: var(--color-brand-100);
     }
   `,
   secondary: css`
     color: var(--color-grey-600);
-    background: var(--color-grey-0);
-    border: 1px solid var(--color-grey-200);
+    background-color: var(--color-grey-0);
+    border: 2px solid var(--color-grey-200);
 
     &:hover {
       background-color: var(--color-grey-50);

@@ -3,6 +3,7 @@ import styled from "styled-components";
 // import media from "styled-media-query";
 import Header from "./Header";
 import Footer from "./Footer";
+// import { ImagesProvider } from "../contexts/ImagesContext";
 
 const breakpoints = {
   xs: "320px",
@@ -43,9 +44,7 @@ export default function AppLayout() {
       <Header />
 
       <Main>
-        {/* <Container> */}
         <Outlet />
-        {/* </Container> */}
       </Main>
       <Footer />
     </StyledAppLayout>

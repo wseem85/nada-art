@@ -28,12 +28,7 @@ const StyledHeroIntro = styled.div`
 export default function HeroTitling() {
   return (
     <StyledHeroIntro>
-      <Heading
-        as="h1"
-        style={{ fontSize: "3rem", color: "var(--color-brand-500)" }}
-      >
-        Welcome To My World Lorem, ipsum dolor sit
-      </Heading>
+      <Heading as="h2">Welcome To My World Lorem, ipsum dolor sit</Heading>
       <Paragraph>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. In mollitia
         placeat quia deserunt provident quaerat optio. Tempora modi, voluptatum

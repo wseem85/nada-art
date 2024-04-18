@@ -8,9 +8,9 @@ const StyledNavLink = styled(NavLink)`
   display: block;
   position: relative;
   width: 100%;
-  font-size: var(--font-lg);
+  font-size: var(--font-md);
   height: 100%;
-  font-weight: bold;
+  font-weight: 600;
   padding: 0.5rem;
   text-align: center;
   border-bottom: 1px solid var(--color-brand-500);
@@ -33,7 +33,7 @@ const StyledNavLink = styled(NavLink)`
     color: var(--color-brand-900);
   }
   ${media(breakpoints.sm)} {
-    font-size: var(--font-lg);
+    font-size: var(--font-md);
     border-bottom: none;
     padding-bottom: 0rem;
   }

@@ -7,10 +7,11 @@ const StyledFormRow = styled.div`
   align-items: center;
   grid-template-columns: 1fr;
 
-  gap: 2.4rem;
+  gap: 1.2rem;
 
   padding: 1.2rem 0;
   ${media(breakpoints.sm)} {
+    gap: 2.3rem;
     grid-template-columns: 120px 2fr;
   }
   &:first-child {
@@ -36,16 +37,17 @@ const Label = styled.label`
   font-weight: 500;
 `;
 
-// const Error = styled.span`
-//   font-size: 1.4rem;
-//   color: var(--color-red-700);
-// `;
+const Error = styled.span`
+  font-size: 1.4rem;
+  color: var(--color-red-700);
+`;
 
-function FormRow({ label, children }) {
+function FormRow({ label, error, children }) {
   return (
     <StyledFormRow>
       {label && <Label htmlFor={children.props.id}>{label}</Label>}
       {children}
+      {error && <Error>{error}</Error>}
     </StyledFormRow>
   );
 }

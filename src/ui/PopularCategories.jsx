@@ -6,6 +6,7 @@ import CategoryBox from "./CategoryBox";
 import { media } from "../utils/helpers";
 import { breakpoints } from "../utils/variables";
 import { Section } from "./Section";
+// import { useImages } from "../features/images/useImages";
 const StyledDiv = styled.div`
   position: absolute;
   top: 60%;
@@ -25,7 +26,7 @@ const StyledArrowBtn = styled.button`
   width: 50px;
   height: 50px;
   /* line-height: 50px; */
-  opacity: 0.7;
+  opacity: 0.5;
   display: flex;
   align-items: center;
   justify-content: center;

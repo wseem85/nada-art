@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
 
 :root {
+  --opacity-50: 0.5;
   --font-sm: 1.2rem;
   --font-md: 1.6rem;
   --font-xmd: 1.8rem;
@@ -14,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
   --color-brand-highTransparency:rgb(96,31,17,0.1);
   --color-brand-midTransparency:rgb(96,31,17,0.3);
   --color-brand-smallTransparency:rgb(96,31,17,0.5);
+  --color-brand-xsmallTransparency:rgb(96,31,17,0.6);
   --color-brand-50: #fcf2f0;
   --color-brand-100: #efb3a7;
   --color-brand-200: #e78c79;
@@ -216,6 +218,9 @@ img {
   transform: translateX(-50%);
   background-color: var(--color-brand-500);
   transition: 0.5s;
+}
+.half-opacity{
+  opacity: 0.5;
 }
 
 /*

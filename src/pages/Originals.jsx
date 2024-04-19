@@ -4,20 +4,21 @@ import HeroOriginals from "../ui/HeroOriginals";
 import PageContainer from "../ui/PageContainer";
 import PictureBox from "../features/images/PictureBox";
 import Filter from "../ui/Filter";
-
+// import Spinner from "../ui/Spinner";
 import { media } from "../utils/helpers";
 import { breakpoints } from "../utils/variables";
 import Heading from "../ui/Heading";
 import { MdOutlineFilterNone } from "react-icons/md";
 
 import ButtonIcon from "../ui/ButtonIcon";
-import Paragraph from "../ui/Pharagraph";
+import Paragraph from "../ui/Paragraph";
 import { useEffect, useState } from "react";
 import Spinner from "../ui/Spinner";
 import Error from "../ui/Error";
 import { useImages } from "../features/images/useImages";
-import { useAllImages } from "../features/images/useAllImages";
+// import { useAllImages } from "../features/images/useAllImages";
 import { FiltersProvider } from "../contexts/FiltersContext";
+import { useQueryClient } from "@tanstack/react-query";
 
 // import { useSearchParams } from "react-router-dom";
 const PicturesContainer = styled.div`
@@ -55,14 +56,15 @@ function Originals() {
   const [allDimenitions, setAllDimenitions] = useState([]);
   const [minMaxPrice, setMinMaxPrice] = useState([]);
   const [filters, setFilters] = useState([]);
-
+  const queryClient = useQueryClient();
   const {
     images,
     isLoading: isLoadingImages,
     error: errorImages,
   } = useImages();
-  const { allImages, isLoading: isLoadingAllImages } = useAllImages();
-
+  // const { allImages, isLoading: isLoadingAllImages } = useAllImages();
+  const allImages = queryClient.getQueryData(["allImages"]);
+  console.log(allImages);
   function handleShowFilter() {
     setShowFilter((show) => !show);
   }
@@ -70,13 +72,13 @@ function Originals() {
     function () {
       function setValues() {
         const categories = Array.from(
-          new Set(allImages.map((image) => image.category))
+          new Set(allImages?.map((image) => image.category))
         );
         const dimenisions = Array.from(
-          new Set(allImages.map((image) => image.dimenitions))
+          new Set(allImages?.map((image) => image.dimenitions))
         );
         const sortedPrices = allImages
-          .map((image) => image.price)
+          ?.map((image) => image.price)
           .sort((a, b) => a - b);
         const minMax = [
           {
@@ -90,9 +92,9 @@ function Originals() {
         setMinMaxPrice(minMax);
       }
 
-      if (!isLoadingAllImages) setValues();
+      setValues();
     },
-    [allImages, isLoadingAllImages]
+    [allImages]
   );
   useEffect(
     function () {
@@ -111,6 +113,7 @@ function Originals() {
     },
     [allCategories, allDimenitions, minMaxPrice]
   );
+  if (isLoadingImages) return <Spinner />;
   return (
     <FiltersProvider>
       <HeroOriginals />
@@ -125,17 +128,17 @@ function Originals() {
         >
           Original Artworks
         </Heading>
-        {!isLoadingAllImages && (
-          <OperationContainer>
-            <ButtonIcon
-              onClick={handleShowFilter}
-              style={{ display: "flex", alignItems: "center", gap: "1.2rem" }}
-            >
-              <span>Filter</span> <MdOutlineFilterNone />
-            </ButtonIcon>
-            <p>{images?.length} Products</p>
-          </OperationContainer>
-        )}
+
+        <OperationContainer>
+          <ButtonIcon
+            onClick={handleShowFilter}
+            style={{ display: "flex", alignItems: "center", gap: "1.2rem" }}
+          >
+            <span>Filter</span> <MdOutlineFilterNone />
+          </ButtonIcon>
+          <p>{images?.length} Products</p>
+        </OperationContainer>
+
         {errorImages && (
           <Error>Somthing went wrong {errorImages.message}</Error>
         )}

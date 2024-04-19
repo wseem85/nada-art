@@ -7,7 +7,7 @@ import { formatCurrency } from "../utils/helpers";
 import { breakpoints } from "../utils/variables";
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
-import Paragraph from "../ui/Pharagraph";
+import Paragraph from "../ui/Paragraph";
 import Spinner from "../ui/Spinner";
 import Button from "../ui/Button";
 // import supabase from "../services/supabase"; // Initialize Supabase client

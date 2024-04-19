@@ -158,7 +158,6 @@ function Filter({ filters, setShowFilter }) {
 export default Filter;
 //
 function FilterListItem({ filter }) {
-  console.log(filter);
   const [opened, setOpened] = useState(false);
   function handleClickArrowBtn() {
     setOpened((opened) => !opened);

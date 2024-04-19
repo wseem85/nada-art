@@ -3,7 +3,8 @@ import { media } from "../utils/helpers";
 import { breakpoints } from "../utils/variables";
 import Heading from "./Heading";
 import Button from "./Button";
-import Paragraph from "./Pharagraph";
+import Paragraph from "./Paragraph";
+import { useNavigate } from "react-router-dom";
 const StyledHeroIntro = styled.div`
   margin-top: 2rem;
   display: flex;
@@ -26,6 +27,7 @@ const StyledHeroIntro = styled.div`
 `;
 
 export default function HeroTitling() {
+  const navigate = useNavigate();
   return (
     <StyledHeroIntro>
       <Heading as="h2">Welcome To My World Lorem, ipsum dolor sit</Heading>
@@ -35,7 +37,11 @@ export default function HeroTitling() {
         laudantium cumque mollitia expedita, id commodi obcaecati ea veniam
         itaque deleniti?
       </Paragraph>
-      <Button size="large" variation="primary">
+      <Button
+        size="large"
+        variation="primary"
+        onClick={() => navigate("/originals")}
+      >
         Buy Originals
       </Button>
     </StyledHeroIntro>

@@ -10,6 +10,7 @@ import ImagePage from "./pages/ImagePage";
 import PageNotFound from "./ui/PageNotFound";
 import Account from "./pages/Account";
 import Login from "./pages/Login";
+import Search from "./pages/Search";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
@@ -56,6 +57,7 @@ export default function App() {
                 <Route path="/account" element={<Account />} />
                 <Route path="/image" element={<ImagePage />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/search" element={<Search />} />
               </Route>
               <Route path="*" element={<PageNotFound />} />
             </Routes>

@@ -92,7 +92,7 @@ export default function NavMenu() {
       <Hamburger />
       {!collapsed && (
         <StyledNavList>
-          {["Home", "Originals", "About", "Login"].map((item) => (
+          {["Home", "Originals", "About", "Account", "Search"].map((item) => (
             <ListItem item={item} key={item} onSetCollapsed={setCollapsed}>
               {item}
             </ListItem>

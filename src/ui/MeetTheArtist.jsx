@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Paragraph from "./Pharagraph";
+import Paragraph from "./Paragraph";
 import { Section } from "./Section";
 
 import SectionHeading from "./SectionHeading";

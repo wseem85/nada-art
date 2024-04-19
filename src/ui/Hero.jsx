@@ -4,6 +4,7 @@ import { breakpoints } from "../utils/variables";
 import { useEffect, useState } from "react";
 import Heading from "./Heading";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 const StyledHero = styled.div`
   position: relative;
   height: calc(100vh - 50px);
@@ -63,7 +64,19 @@ const introTextContent = [
 ];
 export default function Hero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+  const navigate = useNavigate();
+  function handleClick() {
+    if (currentImageIndex === 0 || currentImageIndex === 1) {
+      navigate("/originals");
+    }
+    if (
+      currentImageIndex === 2 ||
+      currentImageIndex === 3 ||
+      currentImageIndex === 4
+    ) {
+      navigate("/search");
+    }
+  }
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -82,7 +95,7 @@ export default function Hero() {
         <Heading as="h1">
           {introTextContent.at(currentImageIndex).title}
         </Heading>
-        <Button size="large" variation="secondary">
+        <Button size="large" variation="secondary" onClick={handleClick}>
           {introTextContent.at(currentImageIndex).btn}
         </Button>
       </StyledHeroIntro>

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Heading from "./Heading";
+import Paragraph from "./Paragraph";
 const StyledSectionHeading = styled(Heading)`
   position: relative;
   text-transform: uppercase;
@@ -10,16 +11,27 @@ const StyledSectionHeading = styled(Heading)`
   margin-left: auto;
   margin-right: auto;
   margin-top: 4rem;
-  margin-bottom: 4rem;
-  width: 300px;
+  margin-bottom: 1rem;
+  width: 200px;
   &::after {
     content: "";
     position: absolute;
-    width: 30%;
-    height: 2px;
-    left: 50%;
-    bottom: -14px;
-    transform: translateX(-50%);
+    width: 1rem;
+    height: 100%;
+    left: -0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--color-brand-300);
+    transition: width 0.3s;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 100%;
+    right: -0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
     background-color: var(--color-brand-300);
     transition: width 0.3s;
   }
@@ -29,5 +41,13 @@ const StyledSectionHeading = styled(Heading)`
   }
 `;
 export default function SectionHeading({ children }) {
-  return <StyledSectionHeading as="h3">{children}</StyledSectionHeading>;
+  return (
+    <div style={{ marginBottom: "3rem" }}>
+      <StyledSectionHeading as="h3">{children}</StyledSectionHeading>
+      <Paragraph style={{ marginBottom: "3rem" }}>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse pariatur
+        labore ab.
+      </Paragraph>
+    </div>
+  );
 }

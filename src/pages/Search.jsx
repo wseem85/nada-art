@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../ui/Button";
 
-export default function About() {
+export default function Search() {
   const navigate = useNavigate();
   return (
     <div
@@ -14,7 +14,7 @@ export default function About() {
         alignItems: "center",
       }}
     >
-      <h1>About Page ... Not Done Yet</h1>
+      <h1>Search Page ... Not Done Yet</h1>
       <Button variation="secondary" size="large" onClick={() => navigate(-1)}>
         &larr; Go Back
       </Button>

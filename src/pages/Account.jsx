@@ -1,8 +1,23 @@
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import Button from "../ui/Button";
 
-const StyledHeader = styled.h1`
-  background-color: var(--color-brand-50);
-`;
 export default function Account() {
-  return <StyledHeader>Account</StyledHeader>;
+  const navigate = useNavigate();
+  return (
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        gap: "3rem",
+        alignItems: "center",
+      }}
+    >
+      <h1>Account Page ... Not Done Yet</h1>
+      <Button variation="secondary" size="large" onClick={() => navigate(-1)}>
+        &larr; Go Back
+      </Button>
+    </div>
+  );
 }

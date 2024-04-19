@@ -1,11 +1,11 @@
 import SectionHeading from "./SectionHeading";
 import { Section } from "./Section";
-import Paragraph from "./Pharagraph";
+// import Paragraph from "./Paragraph";
 import styled, { css } from "styled-components";
 import { formatCurrency, media } from "../utils/helpers";
 import { breakpoints } from "../utils/variables";
 import Button from "./Button";
-
+import { compareDesc, parseISO } from "date-fns";
 const Container = styled.div`
   display: grid;
   /* grid-template-columns: 1fr; */
@@ -53,77 +53,24 @@ const Sale = styled.p`
       color: var(--color-red-700);
     `}
 `;
-const images = [
-  {
-    title: "Title of Image 1",
-    src: "images/img-1.webp",
-    price: 800,
-    discount: 10,
-    soldOut: false,
-  },
-  {
-    title: " Title of Image 2",
-    src: "images/img-2.webp",
-    price: 1200,
-    discount: 20,
-    soldOut: false,
-  },
-  {
-    title: " Title of Image 3",
-    src: "images/img-3.webp",
-    price: 600,
-    discount: 0,
-    soldOut: true,
-  },
-  {
-    title: " Title of Image 4",
-    src: "images/img-4.webp",
-    price: 780,
-    discount: 0,
-    soldOut: false,
-  },
-  {
-    title: " Title of Image 5",
-    src: "images/img-5.webp",
-    price: 850,
-    discount: 12,
-    solOut: true,
-  },
-  {
-    title: " Title of Image 6",
-    src: "images/img-6.webp",
-    price: 428,
-    discount: 0,
-    soldOut: false,
-  },
-  {
-    title: " Title of Image 7",
-    src: "images/img-7.webp",
-    price: 645,
-    discount: 12,
-    soldOut: false,
-  },
-  {
-    title: " Title of Image 8",
-    src: "images/img-8.webp",
-    price: 427,
-    discount: 0,
-    soldOut: true,
-  },
-];
-export default function NewArtWorks() {
+
+export default function NewArtWorks({ allImages }) {
+  const sorted = allImages.sort((obj1, obj2) => {
+    const date1 = parseISO(obj1.created_at);
+    const date2 = parseISO(obj2.created_at);
+
+    // Use compareDesc for ascending order (latest to earliest)
+    // Use compareAsc for descending order (earliest to latest)
+    return compareDesc(date1, date2);
+  });
+  const newPictures = sorted.slice(0, 6);
+
   return (
     <Section>
       <SectionHeading>New Artworks</SectionHeading>
-      <Paragraph>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit
-        voluptatem consequuntur tempora at iure architecto nam sint nesciunt
-        molestiae ipsa eveniet doloremque sapiente porro amet animi, fuga quia
-        libero nulla. Porro voluptatibus dignissimos qui autem amet ratione
-        aliquid saepe necessitatibus!
-      </Paragraph>
+
       <Container>
-        {images.map((image) => (
+        {newPictures.map((image) => (
           <NewImageBox key={image.title}>
             <div style={{ maxWidth: "350px", position: "relative" }}>
               {image.soldOut || image.discount ? (
@@ -150,8 +97,8 @@ export default function NewArtWorks() {
                     style={{
                       color: "var(--color-brand-400)",
                       textDecoration: "line-through",
-                      fontSize: "0.9rem",
-                      fontWeight: "600",
+
+                      fontWeight: "700",
                       marginLeft: "5rem",
                       marginRight: "1.5rem",
                     }}

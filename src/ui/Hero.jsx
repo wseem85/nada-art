@@ -63,6 +63,7 @@ const introTextContent = [
   { title: "Know More About the Artist", btn: "About Me" },
 ];
 export default function Hero() {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const navigate = useNavigate();
   function handleClick() {
@@ -84,13 +85,22 @@ export default function Hero() {
 
     return () => clearInterval(intervalId);
   }, [currentImageIndex]);
+  useEffect(() => {
+    const preloadImages = () => {
+      const allImages = images.map((imageUrl) => (new Image().src = imageUrl));
+      Promise.all(allImages).then(() => setIsLoaded(true));
+    };
 
+    preloadImages();
+
+    // ... other useEffect logic
+  }, []);
   const imageStyle = {
     backgroundImage: `url(${images[currentImageIndex]})`,
   };
 
   return (
-    <StyledHero style={imageStyle}>
+    <StyledHero style={isLoaded ? imageStyle : null}>
       <StyledHeroIntro key={introTextContent.at(currentImageIndex).title}>
         <Heading as="h1">
           {introTextContent.at(currentImageIndex).title}

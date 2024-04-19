@@ -5,7 +5,7 @@ const rotate = keyframes`
     transform: rotate(1turn)
   }
 `;
-const Spinner = styled.div`
+const StyledSpinner = styled.div`
   margin: 4.8rem auto;
 
   width: 6.4rem;
@@ -18,4 +18,17 @@ const Spinner = styled.div`
   animation: ${rotate} 1.5s infinite linear;
 `;
 
-export default Spinner;
+export default function Spinner() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        minHeight: "100vh",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <StyledSpinner />
+    </div>
+  );
+}

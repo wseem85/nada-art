@@ -5,7 +5,7 @@ import Heading from "../ui/Heading";
 const SignupLayout = styled.main`
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 48rem;
+  grid-template-columns: 1fr;
   align-content: center;
   justify-content: center;
   gap: 3.2rem;

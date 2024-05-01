@@ -7,7 +7,7 @@ const LoginLayout = styled.main`
   margin-top: 2.3rem;
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 48rem;
+  grid-template-columns: 1fr;
   align-content: center;
   justify-content: center;
   gap: 3.2rem;

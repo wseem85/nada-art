@@ -15,17 +15,21 @@ const breakpoints = {
 const media = (query) => `@media (min-width: ${query})`;
 
 const StyledAppLayout = styled.div`
-  display: grid;
-
-  /* grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr; */
+  display: flex;
+  gap: 3.2rem;
+  flex-direction: column;
+  /* display: grid; */
+  /* height: auto; */
+  margin-bottom: 2rem;
+  /* grid-template-columns: 1fr; */
+  /* grid-template-rows: 61px 1fr 500px; */
   /* height: 100vh; */
 `;
 
 const Main = styled.main`
   background-color: var(--color-grey-50);
-  position: relative;
-  top: 60px;
+  /* position: relative;
+  top: 60px; */
   /* position: relative; */
   /* padding: 0.75rem; */
   ${media(breakpoints.sm)} {

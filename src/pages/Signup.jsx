@@ -2,14 +2,27 @@ import styled from "styled-components";
 import SignupForm from "../features/authentication/SignupForm";
 import { StyledLogo } from "../ui/Logo";
 import Heading from "../ui/Heading";
+import { media } from "../utils/helpers";
+import { breakpoints } from "../utils/variables";
 const SignupLayout = styled.main`
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr;
-  align-content: center;
+  padding: 1.3rem 1.7rem;
+  margin-top: 2.3rem;
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 3.2rem;
   background-color: var(--color-grey-50);
+  & > form {
+    width: 100%;
+  }
+  ${media(breakpoints.xs)} {
+    & > form {
+      max-width: 50rem;
+    }
+  }
 `;
 
 function Signup() {

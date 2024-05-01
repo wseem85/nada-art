@@ -15,7 +15,7 @@ import ButtonIcon from "../ui/ButtonIcon";
 import Modal from "../features/images/Modal";
 import UpdateUserDataForm from "../features/authentication/UpdateUserDataForm";
 import UpdatePasswordForm from "../features/authentication/UpdatePasswordForm";
-// import { breakpoints } from "../utils/variables";
+import withScrollToTop from "../ui/withScroolToTop";
 const AccountPageContainer = styled.div`
   margin-top: 3rem;
   display: flex;
@@ -32,7 +32,7 @@ const AccountSettings = styled.div`
   flex-wrap: wrap;
   padding: 1rem 1.4rem;
 `;
-export default function Account() {
+function AccountComponent() {
   // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isSmallScreen, setIsSmallScreen] = useState(
     () => window.innerWidth >= 991
@@ -149,3 +149,5 @@ export default function Account() {
     </AccountPageContainer>
   );
 }
+const Account = withScrollToTop(AccountComponent);
+export default Account;

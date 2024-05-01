@@ -17,6 +17,7 @@ function SignupForm() {
 
   console.log(errors);
   const { signup, isLoading: isSigningup } = useSignup();
+  console.log(isSigningup);
   const navigate = useNavigate();
   function onSubmit(data) {
     const { email, password, fullName } = data;
@@ -46,7 +47,7 @@ function SignupForm() {
         />
         {/* {errors.fullName && <p>{errors.fullName.message}</p>} */}
       </FormRowVertical>
-      <FormRowVertical label="Email address">
+      <FormRowVertical label="Email address" error={errors?.email?.message}>
         <Input
           type="email"
           id="email"
@@ -61,9 +62,8 @@ function SignupForm() {
             },
           })}
         />
-        {errors.email && <p>{errors.email.message}</p>}
       </FormRowVertical>
-      <FormRowVertical label="Password">
+      <FormRowVertical label="Password" error={errors?.password?.message}>
         <Input
           type="password"
           id="password"
@@ -77,10 +77,12 @@ function SignupForm() {
             },
           })}
         />
-        {errors.password && <p>{errors.password.message}</p>}
       </FormRowVertical>
 
-      <FormRowVertical label="Confirm Password">
+      <FormRowVertical
+        label="Confirm Password"
+        error={errors?.confirmedPassword?.message}
+      >
         <Input
           type="password"
           id="confirmedPassword"
@@ -92,10 +94,10 @@ function SignupForm() {
               getValues().password === value || "Passwords do not match",
           })}
         />
-        {errors.confirmedPassword && <p>{errors.confirmedPassword.message}</p>}
       </FormRowVertical>
       <FormRowVertical>
-        <Button size="large" disabled={isSigningup}>
+        <Button size="large">
+          {/* <SpinnerMini /> */}
           {!isSigningup ? "Signup" : <SpinnerMini />}
         </Button>
       </FormRowVertical>

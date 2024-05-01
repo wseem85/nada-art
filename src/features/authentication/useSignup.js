@@ -21,5 +21,6 @@ export default function () {
       console.error(err);
     },
   });
+
   return { signup, isLoading };
 }

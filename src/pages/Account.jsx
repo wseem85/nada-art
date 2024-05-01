@@ -2,7 +2,7 @@ import { useAllImages as useAllImagesContext } from "../contexts/AllImagesContex
 import { Outlet } from "react-router-dom";
 import { useCurrentUser } from "../contexts/CurrentUserProvider";
 import { FaUserPen } from "react-icons/fa6";
-import { MdOutlinePassword } from "react-icons/md";
+import { MdOutlinePassword, MdUpload } from "react-icons/md";
 
 import styled from "styled-components";
 // import { PicturesContainer } from "./Originals";
@@ -16,6 +16,10 @@ import Modal from "../features/images/Modal";
 import UpdateUserDataForm from "../features/authentication/UpdateUserDataForm";
 import UpdatePasswordForm from "../features/authentication/UpdatePasswordForm";
 import withScrollToTop from "../ui/withScroolToTop";
+import Heading from "../ui/Heading";
+// import Paragraph from "../ui/Paragraph";
+import Row from "../ui/Row";
+import EditImageForm from "../features/images/EditImageForm";
 const AccountPageContainer = styled.div`
   margin-top: 3rem;
   display: flex;
@@ -96,6 +100,49 @@ function AccountComponent() {
             </Modal>
           </AccountSettings>
 
+          {isSuperUser && (
+            <Row type="vertical">
+              <Modal>
+                <Modal.Open opens="new-product">
+                  <ButtonIcon>
+                    <span>Uploade Product</span>
+                    <MdUpload />
+                  </ButtonIcon>
+                </Modal.Open>
+
+                <Modal.Window name="new-product">
+                  <EditImageForm />
+                </Modal.Window>
+              </Modal>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "1.2rem",
+                }}
+              >
+                <Heading as="h3">A List Of All Products</Heading>
+                <p>You can edit any product by clicking edit button</p>
+              </div>
+            </Row>
+          )}
+          {/* {isSuperUser && (
+            <Modal>
+              <Modal.Open opens="new-product">
+                <ButtonIcon>
+                  <span>Uploade Product</span>
+                  <MdUpload />
+                </ButtonIcon>
+              </Modal.Open>
+
+              <Modal.Window name="new-product">
+                <UpdateUserDataForm />
+              </Modal.Window>
+            </Modal>
+          )} */}
           {isSuperUser && !isXSmallScreen && (
             <Table columns=" 1fr 1fr  1fr">
               <Table.Header>

@@ -28,7 +28,7 @@ export async function logout() {
 }
 
 export async function signup({ email, password, fullName }) {
-  let { data, error } = await supabase.auth.signUp({
+  let { data, error, isLoading } = await supabase.auth.signUp({
     email,
     password,
     options: {
@@ -40,7 +40,7 @@ export async function signup({ email, password, fullName }) {
   });
   if (error) throw new Error(error.message);
 
-  return data;
+  return { data, isLoading };
 }
 
 export async function updateCurrentUser({ password, fullName, avatar }) {

@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 function LoginForm() {
   const { setCurrentUser } = useCurrentUser();
   const [email, setEmail] = useState("engwseem4@gmail.com");
-  const [password, setPassword] = useState("qwerty9876");
+  const [password, setPassword] = useState("qwerty1234");
   const { login, isLoading: isLoggingIn } = useLogin();
   function handleSubmit(e) {
     e.preventDefault();

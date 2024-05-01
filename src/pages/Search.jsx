@@ -90,8 +90,10 @@ const ResultsContainer = styled.div`
 `;
 // const contents = ["Maximum Price", "Category", "Title"];
 function SearchComponent() {
-  const { register, handleSubmit, setValue, getValues, unregister } = useForm();
+  const { register, handleSubmit, setValue, getValues, unregister, formState } =
+    useForm();
   const [searchBy, setSearchBy] = useState("price");
+  const errors = formState.errors;
   // const [searchResult, setSearchResult] = useState(null);
   // const [currentIdx, setCurrentIdx] = useState(0);
   // const [isVisible, setIsVisible] = useState(false);
@@ -200,26 +202,52 @@ function SearchComponent() {
           </SearchByContainer>
 
           {searchBy === "title" && (
-            <Input
-              style={{ maxWidth: "250px" }}
-              name="title"
-              id="title"
-              type="text"
-              defaultValue=""
-              onChange={(e) => setValue("title", e.target.value)}
-              {...register("title")}
-            />
+            <>
+              <Input
+                style={{ maxWidth: "250px" }}
+                name="title"
+                id="title"
+                type="text"
+                defaultValue=""
+                onChange={(e) => setValue("title", e.target.value)}
+                {...register("title", {
+                  required: "this feild is required",
+                  minLength: {
+                    value: 2,
+                    message: "Start By typing at least 2 Characters",
+                  },
+                })}
+              />
+              {errors?.title && (
+                <p style={{ color: "var(--color-red-700)" }}>
+                  {errors.title.message}
+                </p>
+              )}
+            </>
           )}
           {searchBy === "category" && (
-            <Input
-              style={{ maxWidth: "250px" }}
-              name="category"
-              id="category"
-              type="text"
-              defaultValue=""
-              {...register("category")}
-              onChange={(e) => setValue("category", e.target.value)}
-            />
+            <>
+              <Input
+                style={{ maxWidth: "250px" }}
+                name="category"
+                id="category"
+                type="text"
+                defaultValue=""
+                {...register("category", {
+                  required: "this feild is required",
+                  minLength: {
+                    value: 2,
+                    message: "Start By typing at least 3 Characters",
+                  },
+                })}
+                onChange={(e) => setValue("category", e.target.value)}
+              />
+              {errors?.category && (
+                <p style={{ color: "var(--color-red-700)" }}>
+                  {errors.category.message}
+                </p>
+              )}
+            </>
           )}
           {searchBy === "price" && (
             <Input

@@ -13,44 +13,52 @@ import useEditImage from "./useEditImge";
 
 import { ResponsiveFormRow } from "../../ui/ResponsiveFormRow";
 import { FormButton } from "../../ui/FormButton";
+import useCreateImage from "./useCreateImage";
 
 function EditImageForm({ imageToEdit = {}, onCloseModal }) {
   const { id: imageId, ...editValues } = imageToEdit;
   const { src: srcString } = imageToEdit;
   const soldOutStr = imageToEdit.soldOut === true ? "true" : "false";
-  // const isEditSession = Boolean(imageId);
+  const isEditSession = Boolean(imageId);
   const { register, handleSubmit, reset, formState } = useForm({
-    defaultValues: { ...editValues, soldOut: soldOutStr },
+    defaultValues: isEditSession ? { ...editValues, soldOut: soldOutStr } : {},
   });
   const errors = formState.errors;
-  // const { isCreating, createCabin } = useCreateImage();
+  const { isCreating, createImage } = useCreateImage();
   const { isEditing, editImage } = useEditImage();
-  const isWorking = isEditing;
+  const isWorking = isEditing || isCreating;
   function onSubmit(data) {
     const { width, height } = data;
 
     const soldOut = data.soldOut === "true" ? true : false;
     const dimenitions = `${width}*${height}`;
-    console.log(dimenitions);
-    console.log(data.src);
+
     const srcType = typeof data.src === "string";
     const src = srcType || data.src?.length === 0 ? srcString : data.src[0];
-    // const price = Math.floor(
-    //   Number(data.price) - (Number(data.price) * data.discount) / 100
-    // );
 
-    editImage(
-      {
-        newImage: { ...data, src, dimenitions, soldOut },
-        id: imageId,
-      },
-      {
-        onSuccess: () => {
-          reset();
-          onCloseModal?.();
+    if (isEditSession) {
+      editImage(
+        {
+          newImage: { ...data, src, dimenitions, soldOut },
+          id: imageId,
         },
-      }
-    );
+        {
+          onSuccess: () => {
+            reset();
+            onCloseModal?.();
+          },
+        }
+      );
+    } else
+      createImage(
+        { ...data, src, dimenitions, soldOut },
+        {
+          onSuccess: () => {
+            reset();
+            onCloseModal?.();
+          },
+        }
+      );
   }
   function onError(errors) {
     console.log(errors);
@@ -186,7 +194,9 @@ function EditImageForm({ imageToEdit = {}, onCloseModal }) {
         >
           Cancel
         </FormButton>
-        <FormButton disabled={isWorking}>Edit Image</FormButton>
+        <FormButton disabled={isWorking}>
+          {isEditSession ? "Edit Image" : "Upload Image"}
+        </FormButton>
       </FormRow>
     </Form>
   );

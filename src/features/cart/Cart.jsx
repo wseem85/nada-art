@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { media } from "../../utils/helpers";
 import { breakpoints } from "../../utils/variables";
@@ -9,7 +8,7 @@ const StyledCart = styled.div`
   font-size: inherit;
   padding-top: 1.3rem;
   position: absolute;
-  z-index: 10000;
+  z-index: 88;
   right: 0;
   top: 50px;
   min-height: 20rem;
@@ -21,13 +20,11 @@ const StyledCart = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.3rem;
-  animation: change-height 0.2s linear forwards;
-  @keyframes change-height {
-    from {
-      height: 0;
-    }
+  transform: translateX(-100%);
+  animation: move-in 0.2s linear forwards;
+  @keyframes move-in {
     to {
-      height: 20vh;
+      transform: translateX(0);
     }
   }
   ${media(breakpoints.sm)} {
@@ -44,23 +41,10 @@ const StyledCartHeader = styled.div`
 
 export default function Cart() {
   const { setCartIsOpen } = useAppNav();
-  const ref = useRef();
-  useEffect(
-    function () {
-      function handleClick(e) {
-        // e.stopPropagation();
-        console.log("click");
-        console.log(ref.current);
-        if (ref.current && !ref.current.contains(e.target))
-          setCartIsOpen(false);
-      }
-      document.addEventListener("click", handleClick, true);
-      return () => document.removeEventListener("click", handleClick);
-    },
-    [setCartIsOpen]
-  );
+  // const ref = useRef();
+
   return (
-    <StyledCart ref={ref}>
+    <StyledCart>
       <StyledCartHeader>
         <Heading as="h3">Your Cart Is Empty</Heading>
         <ButtonIcon

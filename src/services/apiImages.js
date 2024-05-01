@@ -80,15 +80,16 @@ export async function editImage(newImage, id) {
   }
   // console.log(data);
   if (hasImagePath) return data;
-  // const { error: storageError } = await supabase.storage
-  //   .from("originals")
-  //   .upload(imageName, newImage.src);
-  // if (storageError) {
-  //   await supabase.from("images").delete().eq("id", data.id);
-  //   throw new Error("Could not Upload file");
-  // }
-  // return data;
-  return null;
+  const { error: storageError } = await supabase.storage
+    .from("originals")
+    .upload(imageName, newImage.src);
+  if (storageError) {
+    await supabase.from("images").delete().eq("id", data.id);
+    console.error(storageError);
+    throw new Error("Could not Upload file");
+  }
+  return data;
+  // return null;
 }
 export async function deleteImage(id) {
   const { error } = await supabase.from("images").delete().eq("id", id);

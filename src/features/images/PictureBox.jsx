@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
 import ButtonIcon from "../../ui/ButtonIcon";
@@ -87,19 +87,14 @@ const PictureBoxDetails = styled.div`
     font-size: 0.85rem; */
   }
 `;
-const BoxButton = styled(ButtonIcon)`
-  background-color: var(--color-grey-200);
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  & svg {
-    color: var(--color-grey-500);
-  }
+const EditedButtonIcon = styled(ButtonIcon)`
+  background-color: var(--color-grey-50);
 `;
 export default function PictureBox({ picture }) {
   const { id, title, price, width, height, discount, soldOut, src, category } =
     picture;
-
+  const currentPath = useLocation().pathname;
+  // console.log(currentPath);
   return (
     <PictureBoxContainer>
       <PictureBoxImage>
@@ -165,15 +160,15 @@ export default function PictureBox({ picture }) {
           )}
         </div>
         <div style={{}}>
-          <BoxButton>
+          <EditedButtonIcon>
             <span>Add</span>
             <MdOutlineAddShoppingCart />
-          </BoxButton>
-          <Link to={`${id}`}>
-            <BoxButton>
-              Details
+          </EditedButtonIcon>
+          <Link to={`${currentPath}/${id}`}>
+            <EditedButtonIcon>
+              <span>Details</span>
               <MdOutlineReadMore />
-            </BoxButton>
+            </EditedButtonIcon>
           </Link>
         </div>
       </PictureBoxDetails>

@@ -21,7 +21,7 @@ const StyledHeroIntro = styled.div`
     transform: translateY(-50%);
     left: 60%;
 
-    padding: 6rem 2rem;
+    padding: 4rem 2rem;
     gap: 3.5rem;
   }
 `;
@@ -30,7 +30,7 @@ export default function HeroTitling() {
   const navigate = useNavigate();
   return (
     <StyledHeroIntro>
-      <Heading as="h2">Welcome To My World Lorem, ipsum dolor sit</Heading>
+      <Heading as="h3">Welcome To My World Lorem, ipsum dolor sit</Heading>
       <Paragraph>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. In mollitia
         placeat quia deserunt provident quaerat optio. Tempora modi, voluptatum

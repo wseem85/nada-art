@@ -110,26 +110,43 @@ const DescriptionContainer = styled.div`
 
   ${media(breakpoints.sm)} {
     text-align: left;
-    gap: 3rem;
+    gap: 1.6rem;
   }
   ${media(breakpoints.md)} {
-    gap: 5rem;
+    gap: 2.5rem;
     line-height: 1.8;
     font-size: 2rem;
   }
 `;
 const Details = styled.div`
   display: flex;
-  gap: 1.5rem;
+  gap: 1.2rem;
   justify-content: center;
-  gap: 3rem;
-  color: var(--color-brand-300);
+  font-size: 1rem;
+  color: var(--color-brand-700);
   font-weight: bold;
-  letter-spacing: 2px;
+  /* letter-spacing: 2px; */
   text-transform: capitalize;
+  ${media("385px")} {
+    font-size: 1.3rem;
+  }
+  ${media("500px")} {
+    font-size: 1.7rem;
+  }
   ${media(breakpoints.sm)} {
     justify-content: flex-start;
-    gap: 3rem;
+    /* gap: 1.5rem; */
+    font-size: 1.3rem;
+    /* letter-spacing: 2px; */
+  }
+  ${media("810px")} {
+    font-size: 1.6rem;
+    /* letter-spacing: 2px; */
+  }
+  ${media(breakpoints.lg)} {
+    font-size: 1.7rem;
+    letter-spacing: 2px;
+    /* letter-spacing: 2px; */
   }
   & > span {
     position: relative;

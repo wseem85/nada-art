@@ -1,32 +1,43 @@
 // import { useParams } from "react-router-dom";
 import styled, { css } from "styled-components";
-import { useImage } from "../features/images/useImage";
-import useDeleteImage from "../features/images/useDeleteImage";
+// import { useImage } from "../features/images/useImage";
+// import useDeleteImage from "../features/images/useDeleteImage";
 import { media } from "../utils/helpers";
 import { formatCurrency } from "../utils/helpers";
 import { breakpoints } from "../utils/variables";
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
 import Paragraph from "../ui/Paragraph";
-import Spinner from "../ui/Spinner";
-import Button from "../ui/Button";
+// import Spinner from "../ui/Spinner";
+// import Button from "../ui/Button";
 // import supabase from "../services/supabase"; // Initialize Supabase client
-import useUser from "../features/authentication/useUser";
-import Modal from "../features/images/EditPictureModal";
-import ConfirmDelete from "../ui/ConfirmDelete";
-import EditImageForm from "../features/images/EditImageForm";
-import { useNavigate } from "react-router-dom";
-
+// import useUser from "../features/authentication/useUser";
+// import Modal from "../features/images/EditPictureModal";
+// import ConfirmDelete from "../ui/ConfirmDelete";
+// import EditImageForm from "../features/images/EditImageForm";
+// import { useNavigate } from "react-router-dom";
+// import { Section } from "../ui/Section";
+// import { useQueryClient } from "@tanstack/react-query";
+// import MiniPictureBox from "../ui/MiniPictureBox";
+import withScrollToTop from "../ui/withScroolToTop";
+// import SimilarImages from "../features/images/SimilarImages";
+// import { useAllImages } from "../features/images/useAllImages";
+// const ImageSection = styled(Section)`
+//   display: flex;
+//   flex-direction: column;
+//   gap: 2.3rem;
+//   border-top: none;
+// `;
 const ImagePageContiner = styled.div`
   min-height: 100vh;
-  padding: 0 3rem;
+  padding: 1rem 3rem;
   margin-top: 3rem;
   margin-bottom: 3rem;
-  background-color: var(--color-grey-100);
+  /* background-color: var(--color-grey-100); */
   display: grid;
   justify-content: center;
   align-content: center;
-  gap: 3rem;
+  gap: 1.3rem;
   ${media(breakpoints.sm)} {
     grid-template-columns: 1fr 1fr;
   }
@@ -105,15 +116,17 @@ const Label = styled.p`
       text-transform: capitalize;
     `}
 `;
-export default function ImagePage() {
-  const { data: image, isLoading: isLoadingImage } = useImage();
-  const { isLoading: isLoadingUser } = useUser();
-  const navigate = useNavigate();
-  const { isDeleting, deleteImage } = useDeleteImage();
+
+function ImagePageComponent({ image }) {
+  // const { isLoading: isLoadingUser } = useUser();
+  // const navigate = useNavigate();
+
+  // const { isDeleting, deleteImage } = useDeleteImage();
   // const isSuperUser = user?.user_metadata.is_superuser;
+  // const queryClient = useQueryClient();
+  // const allImages = queryClient.getQueryData(["allImages"]);
 
   const {
-    id,
     title,
     description,
     price,
@@ -124,129 +137,97 @@ export default function ImagePage() {
     src,
     category,
   } = image || {};
-  if (isLoadingImage || isLoadingUser) return <Spinner />;
-  // const inputImgObj = {
-  //   ...image,
-  //   soldOut: image.soldOut === true ? "true" : "false",
-  // };
-  // console.log(user);
+  // if (isLoadingImage) return <Spinner />;
+
   return (
-    <>
-      <ImagePageContiner>
-        <ImageContainer>
-          <img src={src} style={{ width: "100%" }} />
-        </ImageContainer>
-        <TextContainer>
-          <Row type="horizontal">
-            <Heading as="h2" style={{ color: "var(--color-brand-500)" }}>
-              {title}
-            </Heading>
-            <AvailabilityBox avail={soldOut ? "off" : "on"}>
-              {soldOut ? "Sold out" : "In store"}
-            </AvailabilityBox>
+    <ImagePageContiner>
+      <ImageContainer>
+        <img src={src} style={{ width: "100%" }} />
+      </ImageContainer>
+      <TextContainer>
+        <Row type="horizontal">
+          <Heading as="h2" style={{ color: "var(--color-brand-500)" }}>
+            {title}
+          </Heading>
+          <AvailabilityBox avail={soldOut ? "off" : "on"}>
+            {soldOut ? "Sold out" : "In store"}
+          </AvailabilityBox>
+        </Row>
+        <Row type="vertical">
+          <Paragraph>{description}</Paragraph>
+          <Row type="horizontal" style={{ justifyContent: "flex-start" }}>
+            <Label>Dimenisions:</Label>
+            <Label hasBgc="yes">
+              {width}&quot; &times;{height}&quot;
+            </Label>
           </Row>
-          <Row type="vertical">
-            <Paragraph>{description}</Paragraph>
-            <Row type="horizontal" style={{ justifyContent: "flex-start" }}>
-              <Label>Dimenisions:</Label>
-              <Label hasBgc="yes">
-                {width}&quot; &times;{height}&quot;
-              </Label>
-            </Row>
-            <Row type="horizontal" style={{ justifyContent: "flex-start" }}>
-              <Label>Category:</Label>
-              <Label hasBgc="yes">{category}</Label>
-            </Row>
+          <Row type="horizontal" style={{ justifyContent: "flex-start" }}>
+            <Label>Category:</Label>
+            <Label hasBgc="yes">{category}</Label>
           </Row>
-          {discount !== 0 ? (
-            <Row
-              type="horizontal"
+        </Row>
+        {discount !== 0 ? (
+          <Row
+            type="horizontal"
+            style={{
+              justifyContent: "flex-start",
+              gap: "2.5rem",
+              flexWrap: "wrap",
+            }}
+          >
+            <div
               style={{
-                justifyContent: "flex-start",
-                gap: "2.5rem",
-                flexWrap: "wrap",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Label>Old Price</Label>
-                <Tag style={{ textDecoration: "line-through" }}>{price}</Tag>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Label>New Price</Label>
-                <Tag
-                  style={{
-                    fontWeight: "bold",
-                    color: "var(--color-green-700)",
-                  }}
-                >
-                  {formatCurrency(Math.floor(price - (price * discount) / 100))}
-                </Tag>
-              </div>
-            </Row>
-          ) : (
-            <Row type="horizontal" style={{ justifyContent: "flex-start" }}>
-              <Label>Price :</Label>
-              <Tag>{formatCurrency(price)}</Tag>
-            </Row>
-          )}
-          <Row>
-            <Button
-              variation="primary"
-              size="large"
+              <Label>Old Price</Label>
+              <Tag style={{ textDecoration: "line-through" }}>{price}</Tag>
+            </div>
+            <div
               style={{
-                width: "90%",
-                marginLeft: "auto",
-                marginRight: "auto",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              {soldOut ? "Search For Similars" : "Add To Cart"}
-            </Button>
+              <Label>New Price</Label>
+              <Tag
+                style={{
+                  fontWeight: "bold",
+                  color: "var(--color-green-700)",
+                }}
+              >
+                {formatCurrency(Math.floor(price - (price * discount) / 100))}
+              </Tag>
+            </div>
           </Row>
-          <Row type="horizontal" style={{ justifyContent: "space-between" }}>
-            <Modal>
-              <Modal.Open opens="edit">
-                <Button variation="secondary" size="medium">
-                  Edit Picture
-                </Button>
-              </Modal.Open>
-
-              <Modal.Open opens="delete">
-                <Button variation="danger" size="medium">
-                  Delete Picture
-                </Button>
-              </Modal.Open>
-
-              <Modal.Window name="edit">
-                <EditImageForm imageToEdit={image} />
-              </Modal.Window>
-              <Modal.Window name="delete">
-                <ConfirmDelete
-                  onConfirm={() => {
-                    deleteImage(id);
-                    navigate(-1);
-                  }}
-                  disabled={isDeleting}
-                  resourseName="Picture"
-                />
-              </Modal.Window>
-            </Modal>
+        ) : (
+          <Row type="horizontal" style={{ justifyContent: "flex-start" }}>
+            <Label>Price :</Label>
+            <Tag>{formatCurrency(price)}</Tag>
           </Row>
-        </TextContainer>
-      </ImagePageContiner>
-    </>
+        )}
+        {/* <Row>
+          <Button
+            variation="primary"
+            size="large"
+            style={{
+              width: "90%",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          >
+            {soldOut ? "Search For Similars" : "Add To Cart"}
+          </Button>
+        </Row> */}
+      </TextContainer>
+    </ImagePageContiner>
   );
 }
+
+const ImagePage = withScrollToTop(ImagePageComponent);
+export default ImagePage;

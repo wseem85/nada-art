@@ -22,7 +22,7 @@ const HamburgerButton = styled.button`
 const DashSpan = styled.span`
   width: 100%;
   height: 3px;
-  background-color: var(--color-grey-100);
+  background-color: var(--color-brand-700);
   position: relative;
   ${(props) =>
     props.collapsed === false &&

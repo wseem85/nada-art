@@ -49,6 +49,8 @@ const FilterHeader = styled.header`
   align-items: center;
 `;
 const StyledFilterListItem = styled.li`
+  margin-top: 1rem;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   /* align-items: center; */

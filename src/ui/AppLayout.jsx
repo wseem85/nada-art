@@ -16,6 +16,7 @@ const media = (query) => `@media (min-width: ${query})`;
 
 const StyledAppLayout = styled.div`
   display: grid;
+
   /* grid-template-columns: 1fr;
   grid-template-rows: auto 1fr; */
   /* height: 100vh; */
@@ -23,6 +24,8 @@ const StyledAppLayout = styled.div`
 
 const Main = styled.main`
   background-color: var(--color-grey-50);
+  position: relative;
+  top: 60px;
   /* position: relative; */
   /* padding: 0.75rem; */
   ${media(breakpoints.sm)} {

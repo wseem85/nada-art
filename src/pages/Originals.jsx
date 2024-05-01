@@ -18,10 +18,12 @@ import Error from "../ui/Error";
 import { useImages } from "../features/images/useImages";
 // import { useAllImages } from "../features/images/useAllImages";
 import { FiltersProvider } from "../contexts/FiltersContext";
-import { useQueryClient } from "@tanstack/react-query";
+// import { useQueryClient } from "@tanstack/react-query";
+import withScrollToTop from "../ui/withScroolToTop";
+import { useAllImages } from "../contexts/AllImagesContext";
 
 // import { useSearchParams } from "react-router-dom";
-const PicturesContainer = styled.div`
+export const PicturesContainer = styled.div`
   margin-top: 2rem;
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
@@ -50,20 +52,21 @@ const OperationContainer = styled.div`
   /* justify-content: space-between; */
 `;
 
-function Originals() {
+function OriginalsComponent() {
   const [showFilter, setShowFilter] = useState(false);
   const [allCategories, setAllCategories] = useState([]);
   const [allDimenitions, setAllDimenitions] = useState([]);
   const [minMaxPrice, setMinMaxPrice] = useState([]);
   const [filters, setFilters] = useState([]);
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
   const {
     images,
     isLoading: isLoadingImages,
     error: errorImages,
   } = useImages();
   // const { allImages, isLoading: isLoadingAllImages } = useAllImages();
-  const allImages = queryClient.getQueryData(["allImages"]);
+  const { allImages } = useAllImages();
+  // const allImages = queryClient.getQueryData(["allImages"]);
   console.log(allImages);
   function handleShowFilter() {
     setShowFilter((show) => !show);
@@ -130,10 +133,7 @@ function Originals() {
         </Heading>
 
         <OperationContainer>
-          <ButtonIcon
-            onClick={handleShowFilter}
-            style={{ display: "flex", alignItems: "center", gap: "1.2rem" }}
-          >
+          <ButtonIcon onClick={handleShowFilter}>
             <span>Filter</span> <MdOutlineFilterNone />
           </ButtonIcon>
           <p>{images?.length} Products</p>
@@ -163,4 +163,5 @@ function Originals() {
     </FiltersProvider>
   );
 }
+const Originals = withScrollToTop(OriginalsComponent);
 export default Originals;

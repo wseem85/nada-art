@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 export function useImage() {
   const { id } = useParams();
-
+  console.log(id);
   const { isLoading, data, error } = useQuery({
     queryKey: ["image", id],
     queryFn: () => getImage(id),

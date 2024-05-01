@@ -3,9 +3,11 @@ import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import Input from "../../ui/Input";
 import FormRowVertical from "../../ui/FormRowVertical";
+// import FormRow from "../../ui/FormRow";
 import SpinnerMini from "../../ui/SpinnerMini";
 import useLogin from "./useLogin";
 import { useCurrentUser } from "../../contexts/CurrentUserProvider";
+import { Link } from "react-router-dom";
 // import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function LoginForm() {
@@ -56,6 +58,27 @@ function LoginForm() {
           {!isLoggingIn ? "Login" : <SpinnerMini />}
         </Button>
       </FormRowVertical>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "1.3rem",
+        }}
+      >
+        Dont have an account ?
+        <Link to="/account/signup">
+          <span
+            style={{
+              color: "var(--color-brand-300)",
+              textDecoration: "underline",
+              display: "inline-block",
+              marginLeft: "1rem",
+            }}
+          >
+            Create One
+          </span>
+        </Link>
+      </div>
     </Form>
   );
 }

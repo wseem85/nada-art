@@ -13,7 +13,7 @@ export default function () {
       // console.log(queryClient.getQueryData());
       queryClient.setQueryData(["user"], user.user);
       // console.log(queryClient.getQueryData());
-      navigate("/originals", { replace: true });
+      navigate("/account", { replace: true });
     },
     onError: (err) => {
       toast.error("Email or Password are incorrect");

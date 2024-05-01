@@ -3,30 +3,17 @@ import { useForm } from "react-hook-form";
 
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
-import Button from "../../ui/Button";
+
 import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/TextArea";
 import FormRow from "../../ui/FormRow";
 // import SpinnerMini from "../../ui/SpinnerMini";
 // import useCreateImage from "./useCreateImage";
 import useEditImage from "./useEditImge";
-import Row from "../../ui/Row";
-import { media } from "../../utils/helpers";
-import { breakpoints } from "../../utils/variables";
-import styled from "styled-components";
-const ResponsiveFormRow = styled(Row)`
-  flex-direction: column;
-  margin-bottom: 2rem;
-  ${media(breakpoints.sm)} {
-    flex-direction: row;
-  }
-`;
-const FormButton = styled(Button)`
-  &:disabled {
-    background-color: var(--color-brand-100);
-    opacity: 0.7;
-  }
-`;
+
+import { ResponsiveFormRow } from "../../ui/ResponsiveFormRow";
+import { FormButton } from "../../ui/FormButton";
+
 function EditImageForm({ imageToEdit = {}, onCloseModal }) {
   const { id: imageId, ...editValues } = imageToEdit;
   const { src: srcString } = imageToEdit;
@@ -40,7 +27,6 @@ function EditImageForm({ imageToEdit = {}, onCloseModal }) {
   const { isEditing, editImage } = useEditImage();
   const isWorking = isEditing;
   function onSubmit(data) {
-    console.log(data);
     const { width, height } = data;
 
     const soldOut = data.soldOut === "true" ? true : false;

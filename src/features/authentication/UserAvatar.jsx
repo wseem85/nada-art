@@ -9,13 +9,13 @@ const StyledUserAvatar = styled.div`
   align-items: center;
   font-weight: 500;
   font-size: 1.4rem;
-  color: var(--color-grey-100);
+  color: var(--color-brand-700);
 `;
 
 const Avatar = styled.img`
   display: block;
-  width: 3rem;
-  width: 3rem;
+  width: 2.3rem;
+  width: 2.3rem;
   aspect-ratio: 1;
   object-fit: cover;
   object-position: center;
@@ -24,7 +24,6 @@ const Avatar = styled.img`
 `;
 
 export default function UserAvatar({ user }) {
-  console.log(user);
   //   const { user } = useUser();
 
   const { display_name: fullName, avatar } = user.user_metadata;
@@ -35,7 +34,7 @@ export default function UserAvatar({ user }) {
         src={avatar || "default-user.jpg"}
         alt={`Avatar of ${fullName}`}
       />
-      <span>{fullName}</span>
+
       <Logout />
     </StyledUserAvatar>
   );

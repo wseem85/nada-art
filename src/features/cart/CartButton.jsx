@@ -7,15 +7,16 @@ const HeaderCartButton = styled.button`
   padding: 0.6rem;
   border-radius: var(--border-radius-sm);
   transition: all 0.2s;
-  &:hover {
-    background-color: var(--color-brand-100);
+
+  &:focus {
+    outline: none;
   }
   /* color: var(--color-grey-100); */
   & svg {
     width: 2.5rem;
     height: 2.5rem;
 
-    color: var(--color-grey-100);
+    color: var(--color-brand-700);
   }
   &:focus {
     border: none;
@@ -33,8 +34,8 @@ export default function CartButton() {
       <FaCartArrowDown
         style={
           cartIsOpen
-            ? { color: "var(--color-brand-500)" }
-            : { color: "var(--color-grey-100)" }
+            ? { color: "var(--color-brand-700)" }
+            : { color: "var(--color-grey-700)" }
         }
       />
     </HeaderCartButton>

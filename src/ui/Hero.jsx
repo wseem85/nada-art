@@ -6,16 +6,14 @@ import Heading from "./Heading";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 const StyledHero = styled.div`
-  position: relative;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 60px);
   width: 100vw;
 
   background-size: cover;
   background-position: center;
 
   transition: background-image 1s ease-in-out;
-  width: 100vw;
-  height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,8 +26,9 @@ const StyledHero = styled.div`
   }
 `;
 const StyledHeroIntro = styled.div`
-  background-color: var(--color-brand-midTransparency);
-  padding: 4rem 2rem;
+  background-color: rgba(219, 176, 176, 0.3);
+
+  padding: 3rem 2rem;
   width: 100%;
   display: flex;
   flex-direction: column;

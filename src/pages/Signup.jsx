@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import LoginForm from "../features/authentication/LoginForm";
+import SignupForm from "../features/authentication/SignupForm";
 import { StyledLogo } from "../ui/Logo";
-
 import Heading from "../ui/Heading";
-const LoginLayout = styled.main`
-  margin-top: 2.3rem;
+const SignupLayout = styled.main`
   min-height: 100vh;
   display: grid;
   grid-template-columns: 48rem;
@@ -14,14 +12,14 @@ const LoginLayout = styled.main`
   background-color: var(--color-grey-50);
 `;
 
-function Login() {
+function Signup() {
   return (
-    <LoginLayout>
+    <SignupLayout>
       <StyledLogo>Nada art</StyledLogo>
-      <Heading as="h4">Login to your account</Heading>
-      <LoginForm />
-    </LoginLayout>
+      <Heading as="h4">create an account</Heading>
+      <SignupForm />
+    </SignupLayout>
   );
 }
 
-export default Login;
+export default Signup;

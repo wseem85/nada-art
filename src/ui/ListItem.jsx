@@ -10,10 +10,15 @@ const StyledNavLink = styled(NavLink)`
   width: 100%;
   font-size: var(--font-md);
   height: 100%;
-  font-weight: 600;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   padding: 0.5rem;
-  text-align: center;
-  border-bottom: 1px solid var(--color-brand-500);
+  padding-left: 1.3rem;
+  border-top: 1px solid var(--color-brand-midTransparency);
+  padding-top: 2rem;
+  text-align: left;
+  /* border-bottom: 1px solid var(--color-brand-500); */
   padding-bottom: 0.6rem;
   /* padding-left: 3rem; */
   /* &::after {
@@ -27,15 +32,17 @@ const StyledNavLink = styled(NavLink)`
   */
 
   &:hover .span-after {
-    width: 6rem;
+    width: 6.5rem;
   }
   &.active {
     color: var(--color-brand-900);
+    font-weight: 700;
   }
   ${media(breakpoints.sm)} {
     font-size: var(--font-md);
-    border-bottom: none;
+    padding: 0.5rem;
     padding-bottom: 0rem;
+    border-top: none;
   }
 `;
 const AfterSpan = styled.span``;

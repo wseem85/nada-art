@@ -4,7 +4,7 @@ import styled from "styled-components";
 // import { media } from "../utils/helpers";
 // import { breakpoints } from "../utils/variables";
 import Row from "./Row";
-import Logo from "./Logo";
+import { StyledLogo } from "./Logo";
 // import ButtonIcon from "./ButtonIcon";
 import Heading from "./Heading";
 import { media } from "../utils/helpers";
@@ -16,14 +16,16 @@ const FooterRow = styled(Row)`
   }
 `;
 const StyledFooter = styled.footer`
-  background-color: var(--color-brand-200);
-  color: var(--color-grey-100);
+  background-color: var(--color-brown-50);
+  color: var(--color-brand-700);
   padding: 1.5rem 2.3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   /* align-items: center; */
   gap: 3rem;
+  position: relative;
+  top: 4rem;
 `;
 const IconsContainer = styled.div`
   flex: 1;
@@ -112,7 +114,7 @@ export default function Footer() {
         type="horizontal"
         style={{ justifyContent: "center", gap: "2rem", flexWrap: "wrap" }}
       >
-        <Logo />
+        <StyledLogo>Nada Art</StyledLogo>
 
         <IconsContainer>
           <a href="https://www.instagram.com/nadakh.art/" target="_blank">

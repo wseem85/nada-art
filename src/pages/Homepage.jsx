@@ -1,4 +1,5 @@
-import { useAllImages } from "../features/images/useAllImages";
+import { useAllImages as useAllImagesQuery } from "../features/images/useAllImages";
+import { useAllImages as useAllImagesContext } from "../contexts/AllImagesContext";
 import Hero from "../ui/Hero";
 import HeroTitling from "../ui/HeroTitling";
 import MeetTheArtist from "../ui/MeetTheArtist";
@@ -7,8 +8,9 @@ import PopularCategories from "../ui/PopularCategories";
 import Spinner from "../ui/Spinner";
 
 export default function Homepage() {
-  const { allImages, isLoading: isLoadingAllImages } = useAllImages();
-
+  const { allImages, isLoading: isLoadingAllImages } = useAllImagesQuery();
+  const { setAllImages } = useAllImagesContext();
+  setAllImages(allImages);
   if (isLoadingAllImages) return <Spinner />;
   const categories = Array.from(
     new Set(allImages.map((image) => image.category))
@@ -25,8 +27,10 @@ export default function Homepage() {
 
   return (
     <>
-      <Hero />
-      <HeroTitling />
+      <div style={{ position: "relative" }}>
+        <Hero />
+        <HeroTitling />
+      </div>
       {isLoadingAllImages ? (
         <div
           style={{

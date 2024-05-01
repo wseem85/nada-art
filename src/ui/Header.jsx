@@ -9,19 +9,23 @@ import NavMenu from "./NavMenu";
 
 const StyledHeader = styled.header`
   display: flex;
-  background-color: var(--color-brand-200);
-  color: var(--color-grey-100);
+  background-color: var(--color-brown-0);
+  color: var(--color-brand-700);
   justify-content: space-between;
   align-items: center;
-  position: relative;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 100vw;
   max-width: 100vw;
   padding: 0.75rem 1rem;
   font-size: var(--font-lg);
-  border-bottom: 2px solid var(--color-brand-900);
-  box-shadow: var(--shadow-lg);
-  ${media(breakpoints.sm)} {
+  /* border-bottom: 2px solid var(--color-brand-900); */
+  /* box-shadow: var(--shadow-md); */
+  /* ${media(breakpoints.sm)} {
     padding: 1.375rem 1.765rem;
-  }
+  } */
 `;
 
 export default function Header() {

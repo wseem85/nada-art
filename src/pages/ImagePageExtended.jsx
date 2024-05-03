@@ -14,7 +14,7 @@ import { MdOutlineArrowBack } from "react-icons/md";
 import styled from "styled-components";
 import { MdDeleteForever } from "react-icons/md";
 import { MdOutlineEditNote } from "react-icons/md";
-
+import withScrollToTop from "../ui/withScroolToTop";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@ const Container = styled.div`
   margin-top: 3rem;
   margin-bottom: 3rem;
 `;
-export default function ImagePageLimited() {
+function ImagePageLimitedComponent() {
   const navigate = useNavigate();
   const { data: image, isLoading: isLoadingImage } = useImage();
   const { isDeleting, deleteImage } = useDeleteImage();
@@ -71,3 +71,6 @@ export default function ImagePageLimited() {
     </Container>
   );
 }
+
+const ImagePageLimited = withScrollToTop(ImagePageLimitedComponent);
+export default ImagePageLimited;

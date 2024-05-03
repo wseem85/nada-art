@@ -17,7 +17,7 @@ const EditedButtonIcon = styled(ButtonIcon)`
 `;
 export default function Login() {
   return (
-    <Link to="/account">
+    <Link to="/login">
       <EditedButtonIcon content="Log in">
         <HiOutlineLogin />
       </EditedButtonIcon>

@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 export default function useEditImage() {
   const queryClient = useQueryClient();
-  const { isLoading: isEditing, mutate: editImage } = useMutation({
+  const { isPending: isEditing, mutate: editImage } = useMutation({
     mutationFn: ({ newImage, id }) => editImageApi(newImage, id),
     onSuccess: () => {
       toast.success("Image Successfully Edited");

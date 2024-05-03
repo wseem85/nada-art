@@ -69,11 +69,9 @@ export default function App() {
                     <Route path="search/:id" element={<ImagePageLimited />} />
 
                     <Route path="about" element={<About />} />
-                    <Route path="account" element={<Account />}>
-                      <Route index element={<Login />}></Route>
-                      <Route path="login" element={<Login />}></Route>
-                      <Route path="signup" element={<Signup />}></Route>
-                    </Route>
+                    <Route path="account" element={<Account />}></Route>
+                    <Route path="login" element={<Login />}></Route>
+                    <Route path="signup" element={<Signup />}></Route>
                     <Route
                       path="account/image/:id"
                       element={<ImagePageExtended />}

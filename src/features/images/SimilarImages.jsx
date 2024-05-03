@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useAllImages } from "../../contexts/AllImagesContext";
+import { useAllImages } from "../../features/images/useAllImages";
 // import Button from "../../ui/Button";
 import Heading from "../../ui/Heading";
 import MiniPictureBox from "../../ui/MiniPictureBox";
@@ -8,7 +8,8 @@ const SimilarImagesContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.3rem;
-  margin-bottom: 2.3rem;
+  margin-top: 2.3rem;
+  margin-bottom: 1.3rem;
   & > h3 {
     text-align: center;
   }

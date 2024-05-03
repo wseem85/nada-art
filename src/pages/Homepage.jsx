@@ -8,19 +8,20 @@ import PopularCategories from "../ui/PopularCategories";
 import Spinner from "../ui/Spinner";
 
 export default function Homepage() {
-  const { allImages, isLoading: isLoadingAllImages } = useAllImagesQuery();
-  const { setAllImages } = useAllImagesContext();
-  setAllImages(allImages);
+  const { allImages: allImagesData, isLoading: isLoadingAllImages } =
+    useAllImagesQuery();
+  const { allImages, setAllImages } = useAllImagesContext();
+  setAllImages(allImagesData);
   if (isLoadingAllImages) return <Spinner />;
   const categories = Array.from(
-    new Set(allImages.map((image) => image.category))
+    new Set(allImages?.map((image) => image.category))
   );
   const categoriesImages = {};
   for (const category of categories) {
     categoriesImages[category] = [];
   }
   for (const image of allImages) {
-    if (categoriesImages[image.category].length < 2) {
+    if (categoriesImages[image.category]?.length < 2) {
       categoriesImages[image.category].push(image);
     }
   }

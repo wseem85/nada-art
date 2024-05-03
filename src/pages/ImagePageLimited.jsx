@@ -9,7 +9,8 @@ import ButtonIcon from "../ui/ButtonIcon";
 import Row from "../ui/Row";
 import Button from "../ui/Button";
 import useUser from "../features/authentication/useUser";
-export default function ImagePageLimited() {
+import withScrollToTop from "../ui/withScroolToTop";
+function ImagePageLimitedComponent() {
   const { user } = useUser();
   const isSuper = user?.user_metadata?.is_superuser;
   const navigate = useNavigate();
@@ -43,3 +44,5 @@ export default function ImagePageLimited() {
     </div>
   );
 }
+const ImagePageLimited = withScrollToTop(ImagePageLimitedComponent);
+export default ImagePageLimited;

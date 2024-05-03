@@ -53,10 +53,14 @@ const PictureBoxDetails = styled.div`
 export default function MiniPictureBox({ picture }) {
   const { id, title, src } = picture;
   let currentPath = useLocation().pathname;
+  console.log(currentPath);
   const { id: currentImageId } = useParams();
   console.log(currentImageId);
   if (currentPath.endsWith(currentImageId)) {
-    currentPath = currentPath.slice(0, currentPath.length - 2);
+    currentPath = currentPath.slice(
+      0,
+      currentPath.length - currentImageId.length
+    );
   }
   return (
     <Link to={`${currentPath}${id}`}>

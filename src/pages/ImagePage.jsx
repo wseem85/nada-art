@@ -38,7 +38,7 @@ const ImagePageContiner = styled.div`
   justify-content: center;
   align-content: center;
   gap: 1.3rem;
-  ${media(breakpoints.sm)} {
+  ${media(breakpoints.pmd)} {
     grid-template-columns: 1fr 1fr;
   }
 `;
@@ -54,7 +54,7 @@ const ImageContainer = styled.div`
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.3rem;
 `;
 const AvailabilityBox = styled.div`
   width: 10rem;
@@ -146,7 +146,10 @@ function ImagePageComponent({ image }) {
       </ImageContainer>
       <TextContainer>
         <Row type="horizontal">
-          <Heading as="h2" style={{ color: "var(--color-brand-500)" }}>
+          <Heading
+            as="h2"
+            style={{ color: "var(--color-brand-500)", fontSize: "2rem" }}
+          >
             {title}
           </Heading>
           <AvailabilityBox avail={soldOut ? "off" : "on"}>

@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 export default function useDeleteImage() {
   const queryClient = useQueryClient();
 
-  const { isLoading: isDeleting, mutate: deleteImage } = useMutation({
+  const { isPending: isDeleting, mutate: deleteImage } = useMutation({
     mutationFn: (id) => deleteImageApi(id),
     onSuccess: () => {
       toast.success("Image Successfully Deleted");

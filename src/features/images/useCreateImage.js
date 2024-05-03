@@ -4,12 +4,12 @@ import toast from "react-hot-toast";
 
 export default function useCreateImage() {
   const queryClient = useQueryClient();
-  const { isLoading: isCreating, mutate: createImage } = useMutation({
+  const { isPending: isCreating, mutate: createImage } = useMutation({
     mutationFn: (newImage) => editImage(newImage),
     onSuccess: () => {
       toast("Image Successfully Added");
       queryClient.invalidateQueries({
-        gueryKey: ["images"],
+        gueryKey: ["images", "allImages"],
       });
     },
     onError: (err) => {

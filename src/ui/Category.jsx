@@ -75,8 +75,8 @@ const CategoryImageDescription = styled.div`
     flex: 1;
   }
   ${media(breakpoints.sm)} {
-    flex-direction: ${({ isImageLeft }) =>
-      isImageLeft ? "row-reverse" : "row"};
+    flex-direction: ${({ isimageleft }) =>
+      isimageleft ? "row-reverse" : "row"};
 
     padding: 3rem;
   }
@@ -86,8 +86,8 @@ const ImageContainer = styled.div`
   align-items: center;
   justify-content: center;
   ${media(breakpoints.sm)} {
-    justify-content: ${({ isImageEnd }) =>
-      isImageEnd ? "flex-end" : "flex-start"};
+    justify-content: ${({ isimageend }) =>
+      isimageend ? "flex-end" : "flex-start"};
 
     padding: 3rem;
   }
@@ -211,8 +211,8 @@ export default function Category({ category, images }) {
       <CategoryTitle as="h3">{category}</CategoryTitle>
       <StyledCategoryContainer>
         {images.map((image, i) => (
-          <CategoryImageDescription key={image.id} isImageLeft={i % 2 === 0}>
-            <ImageContainer isImageEnd={i % 2 === 0}>
+          <CategoryImageDescription key={image.id} isimageleft={i % 2 === 0}>
+            <ImageContainer isimageend={i % 2 === 0}>
               <Image src={image.src} />
             </ImageContainer>
             <DescriptionContainer>

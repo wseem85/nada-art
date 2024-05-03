@@ -2,6 +2,7 @@
 // import Button from "../ui/Button";
 import Heading from "../ui/Heading";
 import Form from "../ui/Form";
+import Spinner from "../ui/Spinner";
 // import { ResponsiveFormRow } from "../ui/ResponsiveFormRow";
 import { FormButton } from "../ui/FormButton";
 // import FormRow from "../ui/FormRow";
@@ -16,7 +17,7 @@ import { useEffect, useState } from "react";
 // import { useQueryClient } from "@tanstack/react-query";
 // import QuerySearch from "../ui/QuerySearch";
 // import { useAllImages } from "../features/images/useAllImages";
-import { useAllImages as useAllImagesContext } from "../contexts/AllImagesContext";
+import { useAllImages as useAllImagesQuery } from "../features/images/useAllImages";
 import Input from "../ui/Input";
 import PictureBox from "../features/images/PictureBox";
 import { Section } from "../ui/Section";
@@ -98,7 +99,7 @@ function SearchComponent() {
   // const [currentIdx, setCurrentIdx] = useState(0);
   // const [isVisible, setIsVisible] = useState(false);
   // const queryClient = useQueryClient();
-  const { allImages } = useAllImagesContext();
+  const { allImages, isLoading } = useAllImagesQuery();
   const { searchResults, setSearchResults } = useSearchResults();
   // const navigate = useNavigate();
   function onSubmit({ searchBy: searchByForm, title, category, price }) {
@@ -137,6 +138,7 @@ function SearchComponent() {
 
   return (
     <Section style={{ borderTop: "none", minHeight: "100vh" }}>
+      {isLoading && <Spinner />}
       <div style={{ display: "flex" }}>
         <SearchHeading
           as="h3"

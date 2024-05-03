@@ -4,6 +4,7 @@ import { StyledLogo } from "../ui/Logo";
 import Heading from "../ui/Heading";
 import { media } from "../utils/helpers";
 import { breakpoints } from "../utils/variables";
+import withScrollToTop from "../ui/withScroolToTop";
 const SignupLayout = styled.main`
   padding: 1.3rem 1.7rem;
   margin-top: 2.3rem;
@@ -13,10 +14,13 @@ const SignupLayout = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3.2rem;
+  gap: 1.3rem;
   background-color: var(--color-grey-50);
   & > form {
     width: 100%;
+  }
+  & > h3 {
+    text-transform: uppercase;
   }
   ${media(breakpoints.xs)} {
     & > form {
@@ -25,14 +29,14 @@ const SignupLayout = styled.main`
   }
 `;
 
-function Signup() {
+function SignupComponent() {
   return (
     <SignupLayout>
       <StyledLogo>Nada art</StyledLogo>
-      <Heading as="h4">create an account</Heading>
+      <Heading as="h3">create an account</Heading>
       <SignupForm />
     </SignupLayout>
   );
 }
-
+const Signup = withScrollToTop(SignupComponent);
 export default Signup;

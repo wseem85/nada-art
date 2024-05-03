@@ -6,7 +6,7 @@ import Heading from "../ui/Heading";
 import { useEffect, useState } from "react";
 const HeroContainer = styled.div`
   position: relative;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 60px);
   max-width: 100vw;
 
   background-image: url("/images/originalsheromobile.webp");
@@ -54,7 +54,7 @@ const PageHeading = styled(Heading)`
   padding-top: 3.5rem;
 
   font-size: 2rem;
-  letter-spacing: 14px;
+  letter-spacing: 10px;
   text-align: center;
   ${media(breakpoints.xs)} {
     font-size: 3.8rem;
@@ -64,14 +64,14 @@ const PageHeading = styled(Heading)`
   }
 `;
 const IntroHeading = styled(Heading)`
-  font-size: 1.2rem;
+  font-size: 1.7rem;
   text-transform: uppercase;
-  letter-spacing: 6px;
+  letter-spacing: 4px;
   font-weight: bold;
   padding-left: 0.3rem;
 
   ${media(breakpoints.xs)} {
-    font-size: 2rem;
+    font-size: 2.3rem;
     padding-left: 0;
   }
   ${media(breakpoints.sm)} {
@@ -88,14 +88,14 @@ const IntroHeading = styled(Heading)`
   }
 `;
 const IntroParagraph = styled(Heading)`
-  letter-spacing: 4px;
+  letter-spacing: 2px;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.2rem;
   opacity: 0;
   padding-left: 0.3rem;
   animation: fade-in 4s forwards;
   ${media(breakpoints.xs)} {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
   }
   ${media(breakpoints.sm)} {
     padding-left: 0;

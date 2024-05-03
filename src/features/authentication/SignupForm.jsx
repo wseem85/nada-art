@@ -26,7 +26,7 @@ function SignupForm() {
       { email, password, fullName },
       {
         onSettled: () => {
-          navigate("/account/login");
+          navigate("/login");
         },
       }
     );
@@ -109,7 +109,7 @@ function SignupForm() {
         }}
       >
         Already have an account ?
-        <Link to="/account/login">
+        <Link to="/login">
           <span
             style={{
               color: "var(--color-brand-300)",

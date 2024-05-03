@@ -7,7 +7,7 @@ export default function () {
   const navigate = useNavigate();
   //   const queryClient = useQueryClient();
 
-  const { mutate: signup, isLoading } = useMutation({
+  const { mutate: signup, isPending: isLoading } = useMutation({
     mutationFn: ({ email, password, fullName }) =>
       signupApi({ email, password, fullName }),
     onSuccess: () => {

@@ -16,23 +16,13 @@ const media = (query) => `@media (min-width: ${query})`;
 
 const StyledAppLayout = styled.div`
   display: flex;
-  /* gap: 3.2rem; */
+
   flex-direction: column;
-  /* display: grid; */
-  /* height: auto; */
-  /* margin-bottom: 2rem; */
-  /* grid-template-columns: 1fr; */
-  /* grid-template-rows: 61px 1fr 500px; */
-  /* height: 100vh; */
-  /* height: fit-content; */
 `;
 
 const Main = styled.main`
   background-color: var(--color-grey-50);
-  /* position: relative; */
-  /* top: 60px; */
-  /* position: relative; */
-  /* padding: 0.75rem; */
+  min-height: 100vh;
   ${media(breakpoints.sm)} {
   }
   ${media(breakpoints.md)} {

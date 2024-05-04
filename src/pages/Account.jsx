@@ -205,16 +205,16 @@ function AccountComponent() {
           perferendis blanditiis aut.
         </Paragraph>
         <Heading as="h3">By having an account you will be able to </Heading>
-        <ol>
-          <li>
+        <ol style={{ padding: "1rem 2rem", listStyleType: "circle" }}>
+          <li style={{ marginLeft: "1rem" }}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis,
             natus.
           </li>
-          <li>
+          <li style={{ marginLeft: "1rem" }}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis,
             natus.
           </li>
-          <li>
+          <li style={{ marginLeft: "1rem" }}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis,
             natus.
           </li>

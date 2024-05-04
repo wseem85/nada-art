@@ -33,7 +33,7 @@ const Overlay = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 159rem;
+  height: 100%;
   background-color: var(--backdrop-color);
   backdrop-filter: blur(4px);
   /* overflow-x: h; */

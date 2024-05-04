@@ -135,12 +135,13 @@ const GlobalStyles = createGlobalStyle`
 
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 
 body {
+  overflow: visible !important;
   font-family:"PT Sans Caption", sans-serif;
   color: var(--color-grey-700);
-  scroll-behavior: smooth;
   transition: color 0.3s, background-color 0.3s;
   /* min-height: 100vh; */
   line-height: 1.5;

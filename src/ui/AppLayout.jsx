@@ -21,8 +21,8 @@ const StyledAppLayout = styled.div`
 `;
 
 const Main = styled.main`
-  background-color: var(--color-grey-50);
   min-height: 100vh;
+  background-color: var(--color-grey-50);
   ${media(breakpoints.sm)} {
   }
   ${media(breakpoints.md)} {

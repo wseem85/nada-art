@@ -10,7 +10,7 @@ const StyledModal = styled.div`
   /* top: 3rem; */
   left: 0;
   width: 100%;
-  height: 150vh;
+  min-height: 100%;
   background-color: var(--color-grey-0);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-lg);
@@ -19,7 +19,7 @@ const StyledModal = styled.div`
   z-index: 8888;
   /* overflow-y: scroll; */
   ${media(breakpoints.sm)} {
-    height: 100vh;
+    min-height: 100vh;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -33,13 +33,13 @@ const Overlay = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  min-height: 150%;
   background-color: var(--backdrop-color);
   backdrop-filter: blur(4px);
   /* overflow-x: h; */
   transition: all 0.5s;
   ${media(breakpoints.sm)} {
-    height: 100vh;
+    min-height: 100vh;
   }
 `;
 

@@ -13,7 +13,7 @@ const StyledHeader = styled.header`
   color: var(--color-brand-700);
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: sticky;
   z-index: 99;
   top: 0;
   left: 0;

@@ -137,7 +137,7 @@ function SearchComponent() {
   );
 
   return (
-    <Section style={{ borderTop: "none", minHeight: "100vh" }}>
+    <Section style={{ borderTop: "none" }}>
       {isLoading && <Spinner />}
       <div style={{ display: "flex" }}>
         <SearchHeading

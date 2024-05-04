@@ -30,7 +30,7 @@ const AccountPageContainer = styled.div`
   flex-direction: column;
   gap: 2.3rem;
   align-items: center;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 `;
 const AccountSettings = styled.div`
   display: flex;

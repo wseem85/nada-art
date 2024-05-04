@@ -6,18 +6,18 @@ import styled from "styled-components";
 import { media } from "../../utils/helpers";
 import { breakpoints } from "../../utils/variables";
 const StyledModal = styled.div`
-  position: fixed;
+  position: absolute;
   /* top: 3rem; */
   left: 0;
   width: 100%;
-  height: 150rem;
+  height: 150vh;
   background-color: var(--color-grey-0);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-lg);
   padding: 3.2rem 4rem;
   transition: all 0.5s;
   z-index: 8888;
-
+  /* overflow-y: scroll; */
   ${media(breakpoints.sm)} {
     height: 100vh;
     top: 50%;
@@ -28,15 +28,15 @@ const StyledModal = styled.div`
 `;
 
 const Overlay = styled.div`
-  position: fixed;
+  position: absolute;
   z-index: 8880;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100dvh;
+  height: 159rem;
   background-color: var(--backdrop-color);
   backdrop-filter: blur(4px);
-  overflow-x: scroll;
+  /* overflow-x: h; */
   transition: all 0.5s;
   ${media(breakpoints.sm)} {
     height: 100vh;

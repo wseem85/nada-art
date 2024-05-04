@@ -24,7 +24,8 @@ const StyledFooter = styled.footer`
   justify-content: space-between;
   /* align-items: center; */
   gap: 3rem;
-  position: relative;
+  /* position: sticky; */
+  /* bottom: 0; */
   top: 4rem;
 `;
 const IconsContainer = styled.div`

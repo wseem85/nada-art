@@ -138,11 +138,11 @@ export default function Cart() {
   const imagesInCart = allImages?.filter((image) =>
     imagesInCartIds?.includes(image.id)
   );
-
   function handleClearCart() {
     dispatch(clearCart());
     setStoredCart(JSON.parse(localStorage.getItem("cart")));
   }
+  console.log(imagesInCart);
   if (error) return <p>Something went wrong</p>;
   if (storedCart?.length === 0)
     return (

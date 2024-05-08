@@ -29,7 +29,8 @@ export default function NavMenu() {
   const { collapsed, setCollapsed } = useAppNav();
   // const { user, isAuthenticated, isLoading: isLoadingUser } = useUser();
   // const { currentUser, setCurrentUser } = useCurrentUser();
-
+  // const ref = useRef();
+  // console.log(ref);
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {

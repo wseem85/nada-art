@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useAppNav } from "../contexts/AppNavContext";
 import { media } from "../utils/helpers";
 import { breakpoints } from "../utils/variables";
-import useOutSideClick from "../hooks/useOutsideClick";
+// import useOutSideClick from "../hooks/useOutsideClick";
 const StyledNavList = styled.ul`
   font-size: inherit;
   display: flex;
@@ -46,12 +46,10 @@ const StyledNavList = styled.ul`
 `;
 export default function NavList() {
   const { setCollapsed } = useAppNav();
-  const ref = useOutSideClick(function () {
-    if (window.innerWidth <= 768) setCollapsed(true);
-  });
+
   return (
-    <StyledNavList ref={ref}>
-      {["Home", "Originals", "About", "Account", "Search"].map((item) => (
+    <StyledNavList>
+      {["Home", "Originals", "About", "Search", "Account"].map((item) => (
         <ListItem item={item} key={item} onSetCollapsed={setCollapsed}>
           {item}
         </ListItem>

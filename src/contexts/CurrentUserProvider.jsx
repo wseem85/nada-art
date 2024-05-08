@@ -15,6 +15,7 @@ const useCurrentUser = function () {
   const context = useContext(CurrentUserContext);
   if (context === undefined)
     throw new Error("You used Context out of its Provider");
+
   return context;
 };
 export { CurrentUserProvider, useCurrentUser };

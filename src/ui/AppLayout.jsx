@@ -1,5 +1,7 @@
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
+import Cart from "../features/cart/Cart";
+import { useAppNav } from "../contexts/AppNavContext";
 // import media from "styled-media-query";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -16,7 +18,7 @@ const media = (query) => `@media (min-width: ${query})`;
 
 const StyledAppLayout = styled.div`
   display: flex;
-
+  position: relative;
   flex-direction: column;
 `;
 
@@ -37,14 +39,16 @@ const Main = styled.main`
 //   gap: 3.2rem;
 // `;
 export default function AppLayout() {
+  const { cartIsOpen } = useAppNav();
   return (
     <StyledAppLayout>
       <Header />
-
       <Main>
         <Outlet />
       </Main>
+
       <Footer />
+      {cartIsOpen && <Cart />}
     </StyledAppLayout>
   );
 }

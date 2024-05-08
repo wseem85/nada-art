@@ -118,7 +118,7 @@ function SignupForm() {
               marginLeft: "1rem",
             }}
           >
-            Sign in
+            Log in
           </span>
         </Link>
       </div>

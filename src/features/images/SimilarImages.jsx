@@ -3,6 +3,7 @@ import { useAllImages } from "../../features/images/useAllImages";
 // import Button from "../../ui/Button";
 import Heading from "../../ui/Heading";
 import MiniPictureBox from "../../ui/MiniPictureBox";
+import Spinner from "../../ui/Spinner";
 
 const SimilarImagesContainer = styled.div`
   display: flex;
@@ -26,7 +27,7 @@ const SimilarImagesContainer = styled.div`
 `;
 
 export default function SimilarImages({ image }) {
-  const { allImages } = useAllImages();
+  const { allImages, isLoading } = useAllImages();
   const {
     id,
 
@@ -37,6 +38,7 @@ export default function SimilarImages({ image }) {
 
     category,
   } = image || {};
+  if (isLoading) return <Spinner />;
   const similarCategory = allImages
     .filter((image) => image.category === category && !image.soldOut)
     .slice(0, 3);

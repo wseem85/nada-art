@@ -6,8 +6,8 @@ import MeetTheArtist from "../ui/MeetTheArtist";
 import NewArtWorks from "../ui/NewArtWorks";
 import PopularCategories from "../ui/PopularCategories";
 import Spinner from "../ui/Spinner";
-
-export default function Homepage() {
+import withScrollToTop from "../ui/withScroolToTop";
+function HomepageComponent() {
   const { allImages: allImagesData, isLoading: isLoadingAllImages } =
     useAllImagesQuery();
   const { allImages, setAllImages } = useAllImagesContext();
@@ -20,12 +20,13 @@ export default function Homepage() {
   for (const category of categories) {
     categoriesImages[category] = [];
   }
-  for (const image of allImages) {
-    if (categoriesImages[image.category]?.length < 2) {
-      categoriesImages[image.category].push(image);
+  if (allImages?.length) {
+    for (const image of allImages) {
+      if (categoriesImages[image.category]?.length < 2) {
+        categoriesImages[image.category].push(image);
+      }
     }
   }
-
   return (
     <>
       <div style={{ position: "relative" }}>
@@ -57,3 +58,5 @@ export default function Homepage() {
     </>
   );
 }
+const HomePage = withScrollToTop(HomepageComponent);
+export default HomePage;

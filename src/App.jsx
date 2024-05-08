@@ -6,6 +6,8 @@ import AppLayout from "./ui/AppLayout";
 import Originals from "./pages/Originals";
 import Homepage from "./pages/Homepage";
 import About from "./pages/About";
+import { AppNavProvider } from "./contexts/AppNavContext";
+import { StoredCartProvider } from "./contexts/StoredCartContext";
 // import ImagePage from "./pages/ImagePage";
 import PageNotFound from "./ui/PageNotFound";
 // import Account from "./pages/Account";
@@ -52,37 +54,44 @@ export default function App() {
             },
           }}
         />
-        <CurrentUserProvider>
-          <AllImagesProvider>
-            <SearchResultsProvider>
-              <BrowserRouter>
-                <Routes>
-                  <Route element={<AppLayout />}>
-                    <Route index element={<Navigate to="home" />} />
-                    <Route path="home" element={<Homepage />} />
-                    <Route path="originals" element={<Originals />} />
-                    <Route
-                      path="originals/:id"
-                      element={<ImagePageLimited />}
-                    />
-                    <Route path="search" element={<Search />} />
-                    <Route path="search/:id" element={<ImagePageLimited />} />
+        <AppNavProvider>
+          <CurrentUserProvider>
+            <AllImagesProvider>
+              <SearchResultsProvider>
+                <StoredCartProvider>
+                  <BrowserRouter>
+                    <Routes>
+                      <Route element={<AppLayout />}>
+                        <Route index element={<Navigate to="home" />} />
+                        <Route path="home" element={<Homepage />} />
+                        <Route path="originals" element={<Originals />} />
+                        <Route
+                          path="originals/:id"
+                          element={<ImagePageLimited />}
+                        />
+                        <Route path="search" element={<Search />} />
+                        <Route
+                          path="search/:id"
+                          element={<ImagePageLimited />}
+                        />
 
-                    <Route path="about" element={<About />} />
-                    <Route path="account" element={<Account />}></Route>
-                    <Route path="login" element={<Login />}></Route>
-                    <Route path="signup" element={<Signup />}></Route>
-                    <Route
-                      path="account/image/:id"
-                      element={<ImagePageExtended />}
-                    />
-                  </Route>
-                  <Route path="*" element={<PageNotFound />} />
-                </Routes>
-              </BrowserRouter>
-            </SearchResultsProvider>
-          </AllImagesProvider>
-        </CurrentUserProvider>
+                        <Route path="about" element={<About />} />
+                        <Route path="account" element={<Account />}></Route>
+                        <Route path="login" element={<Login />}></Route>
+                        <Route path="signup" element={<Signup />}></Route>
+                        <Route
+                          path="account/image/:id"
+                          element={<ImagePageExtended />}
+                        />
+                      </Route>
+                      <Route path="*" element={<PageNotFound />} />
+                    </Routes>
+                  </BrowserRouter>
+                </StoredCartProvider>
+              </SearchResultsProvider>
+            </AllImagesProvider>
+          </CurrentUserProvider>
+        </AppNavProvider>
       </QueryClientProvider>
     </>
   );

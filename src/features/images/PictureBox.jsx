@@ -4,6 +4,8 @@ import { formatCurrency } from "../../utils/helpers";
 import ButtonIcon from "../../ui/ButtonIcon";
 // import { breakpoints } from "../../utils/variables";
 import { MdOutlineAddShoppingCart, MdOutlineReadMore } from "react-icons/md";
+import useAddToCart from "../../hooks/useAddToCart";
+import { useStoredCart } from "../../contexts/StoredCartContext";
 
 const PictureBoxContainer = styled.div`
   display: flex;
@@ -94,7 +96,13 @@ export default function PictureBox({ picture }) {
   const { id, title, price, width, height, discount, soldOut, src, category } =
     picture;
   const currentPath = useLocation().pathname;
+  const { setStoredCart } = useStoredCart();
   // console.log(currentPath);
+  const { handleAddToCart } = useAddToCart(id);
+  function handleClick() {
+    handleAddToCart();
+    setStoredCart(JSON.parse(localStorage.getItem("cart")));
+  }
   return (
     <PictureBoxContainer>
       <PictureBoxImage>
@@ -160,10 +168,24 @@ export default function PictureBox({ picture }) {
           )}
         </div>
         <div style={{}}>
-          <EditedButtonIcon>
-            <span>Add</span>
-            <MdOutlineAddShoppingCart />
-          </EditedButtonIcon>
+          {!soldOut ? (
+            <EditedButtonIcon onClick={handleClick}>
+              <span>Add</span>
+              <MdOutlineAddShoppingCart />
+            </EditedButtonIcon>
+          ) : (
+            <span
+              style={{
+                color: "var(--color-red-700)",
+                fontSize: "1.4rem",
+
+                fontWeight: "bold",
+                display: "inline-block",
+              }}
+            >
+              Sold Out
+            </span>
+          )}
           <Link to={`${currentPath}/${id}`}>
             <EditedButtonIcon>
               <span>Details</span>

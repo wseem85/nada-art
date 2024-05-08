@@ -1,4 +1,3 @@
-import { AppNavProvider } from "../contexts/AppNavContext";
 import styled from "styled-components";
 import { breakpoints } from "../utils/variables";
 import { media } from "../utils/helpers";
@@ -30,11 +29,9 @@ const StyledHeader = styled.header`
 
 export default function Header() {
   return (
-    <AppNavProvider>
-      <StyledHeader>
-        <Logo />
-        <NavMenu />
-      </StyledHeader>
-    </AppNavProvider>
+    <StyledHeader>
+      <Logo />
+      <NavMenu />
+    </StyledHeader>
   );
 }

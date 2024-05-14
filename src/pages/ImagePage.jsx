@@ -1,67 +1,83 @@
 // import { useParams } from "react-router-dom";
 import styled, { css } from "styled-components";
-// import { useImage } from "../features/images/useImage";
+import { useNavigate } from "react-router-dom";
 // import useDeleteImage from "../features/images/useDeleteImage";
 import { media } from "../utils/helpers";
 import { formatCurrency } from "../utils/helpers";
 import { breakpoints } from "../utils/variables";
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
-import Paragraph from "../ui/Paragraph";
-// import Spinner from "../ui/Spinner";
-// import Button from "../ui/Button";
-// import supabase from "../services/supabase"; // Initialize Supabase client
-// import useUser from "../features/authentication/useUser";
-// import Modal from "../features/images/EditPictureModal";
-// import ConfirmDelete from "../ui/ConfirmDelete";
-// import EditImageForm from "../features/images/EditImageForm";
-// import { useNavigate } from "react-router-dom";
-// import { Section } from "../ui/Section";
-// import { useQueryClient } from "@tanstack/react-query";
-// import MiniPictureBox from "../ui/MiniPictureBox";
+import SimilarImages from "../features/images/SimilarImages";
+import { useImage } from "../features/images/useImage";
+import useUser from "../features/authentication/useUser";
+import useAddToCart from "../hooks/useAddToCart";
+import { useStoredCart } from "../contexts/StoredCartContext";
+import Modal from "../features/images/Modal";
+import useDeleteImage from "../features/images/useDeleteImage";
+import EditImageForm from "../features/images/EditImageForm";
+import ConfirmDelete from "../ui/ConfirmDelete";
+import ButtonIconText from "../ui/ButtonIconText";
+import { MdDeleteForever } from "react-icons/md";
+import { MdOutlineEditNote } from "react-icons/md";
+import Spinner from "../ui/Spinner";
+import {
+  MdOutlineAddShoppingCart,
+  MdOutlineSearch,
+  MdOutlineArrowBack,
+} from "react-icons/md";
 import withScrollToTop from "../ui/withScroolToTop";
-// import SimilarImages from "../features/images/SimilarImages";
-// import { useAllImages } from "../features/images/useAllImages";
-// const ImageSection = styled(Section)`
-//   display: flex;
-//   flex-direction: column;
-//   gap: 2.3rem;
-//   border-top: none;
-// `;
 const ImagePageContiner = styled.div`
-  min-height: 100vh;
-  padding: 1rem 3rem;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  /* background-color: var(--color-grey-100); */
+  /* min-height: 100vh; */
+  padding: 0.7rem 1rem;
+  position: relative;
+  margin-bottom: 2.3rem;
+  ${media(breakpoints.xs)} {
+    padding: 1.3rem 2rem;
+  }
+
   display: grid;
   justify-content: center;
   align-content: center;
   gap: 1.3rem;
   ${media(breakpoints.pmd)} {
     grid-template-columns: 1fr 1fr;
+    align-content: start;
+    margin-top: 1.3rem;
+    min-height: unset;
+    gap: 2rem;
+  }
+  ${media(breakpoints.md)} {
+    gap: 3rem;
+  }
+  ${media(breakpoints.lg)} {
+    gap: 4rem;
   }
 `;
-const ImageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 2rem;
-  ${media(breakpoints.sm)} {
-    margin-bottom: 0;
-  }
+const ImageContainer = styled.div``;
+const StyledImage = styled.img`
+  object-fit: cover;
+  aspect-ratio: 5/6;
+  width: 100%;
 `;
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.3rem;
+  gap: 1.7rem;
+  ${media(breakpoints.md)} {
+    padding-top: 3.2rem;
+    gap: 3.2rem;
+    font-size: 110%;
+  }
 `;
 const AvailabilityBox = styled.div`
-  width: 10rem;
+  /* width: 6rem; */
   background-color: var(--color-brand-500);
   color: var(--color-grey-100);
   font-weight: bold;
-  font-size: var(--font-md);
+  font-size: 80%;
+  ${media("350px")} {
+    font-size: 100%;
+  }
   text-align: center;
   padding: 0.3rem;
   border-radius: 1rem;
@@ -76,11 +92,36 @@ const AvailabilityBox = styled.div`
       background-color: var(--color-red-700);
     `}
 `;
+const StyledTitle = styled(Heading)`
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(---color-brand-300);
+  ${media("350px")} {
+    font-size: 2.3rem;
+  }
+`;
+const StyledDescription = styled.p`
+  line-height: 1.2;
+  text-align: left;
+  letter-spacing: var(--space-md);
+  margin-bottom: 1.7rem;
+  /* padding-left: 0.4rem; */
+  padding-right: 0.4rem;
+  ${media(breakpoints.md)} {
+    line-height: 1.6;
+  }
+  color: var(--color-grey-500);
+  &::first-letter {
+    font-weight: bold;
+
+    color: var(--color-brand-300);
+  }
+`;
 const Tag = styled.span`
   display: inline-block;
   border: 1px solid var(--color-grey-0);
   padding: 0.3rem;
-
+  margin-left: 0.5rem;
   background-color: var(--color-grey-100);
 
   ${(props) =>
@@ -101,32 +142,43 @@ const Tag = styled.span`
 `;
 const Label = styled.p`
   /* width: 12rem; */
-  letter-spacing: 3px;
+  letter-spacing: 1.3px;
+  font-weight: 500;
+  font-size: 90%;
+  ${media("350px")} {
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 100%;
+  }
   text-transform: uppercase;
-  font-weight: bold;
-  margin-left: 1.5rem;
+  /* margin-left: 1.5rem; */
   ${(props) =>
-    props.hasBgc === "yes" &&
+    props.hasbgc === "yes" &&
     css`
       background-color: var(--color-brand-300);
       border-radius: 8px;
       color: var(--color-grey-50);
       padding: 0.5rem;
-      letter-spacing: 2px;
+      letter-spacing: 1.2px;
       text-transform: capitalize;
+      margin-left: 0.7rem;
     `}
 `;
 
-function ImagePageComponent({ image }) {
-  // const { isLoading: isLoadingUser } = useUser();
-  // const navigate = useNavigate();
-
-  // const { isDeleting, deleteImage } = useDeleteImage();
-  // const isSuperUser = user?.user_metadata.is_superuser;
-  // const queryClient = useQueryClient();
-  // const allImages = queryClient.getQueryData(["allImages"]);
-
+function ImagePageComponent() {
+  const { user } = useUser();
+  const navigate = useNavigate();
+  const { setStoredCart } = useStoredCart();
+  const isSuper = user?.user_metadata?.is_superuser;
+  const { data: image, isLoading: isLoadingImage } = useImage();
+  const { isDeleting, deleteImage } = useDeleteImage();
+  const { handleAddToCart } = useAddToCart(image?.id);
+  function handleClick() {
+    handleAddToCart();
+    setStoredCart(JSON.parse(localStorage.getItem("cart")));
+  }
   const {
+    id,
     title,
     description,
     price,
@@ -137,36 +189,30 @@ function ImagePageComponent({ image }) {
     src,
     category,
   } = image || {};
-  // if (isLoadingImage) return <Spinner />;
-
+  if (isLoadingImage) return <Spinner />;
   return (
     <ImagePageContiner>
       <ImageContainer>
-        <img src={src} style={{ width: "100%" }} />
+        <StyledImage src={src} />
       </ImageContainer>
       <TextContainer>
         <Row type="horizontal">
-          <Heading
-            as="h2"
-            style={{ color: "var(--color-brand-500)", fontSize: "2rem" }}
-          >
-            {title}
-          </Heading>
+          <StyledTitle as="h3">{title}</StyledTitle>
           <AvailabilityBox avail={soldOut ? "off" : "on"}>
             {soldOut ? "Sold out" : "In store"}
           </AvailabilityBox>
         </Row>
         <Row type="vertical">
-          <Paragraph>{description}</Paragraph>
+          <StyledDescription>{description}</StyledDescription>
           <Row type="horizontal" style={{ justifyContent: "flex-start" }}>
             <Label>Dimenisions:</Label>
-            <Label hasBgc="yes">
+            <Label hasbgc="yes">
               {width}&quot; &times;{height}&quot;
             </Label>
           </Row>
           <Row type="horizontal" style={{ justifyContent: "flex-start" }}>
             <Label>Category:</Label>
-            <Label hasBgc="yes">{category}</Label>
+            <Label hasbgc="yes">{category}</Label>
           </Row>
         </Row>
         {discount !== 0 ? (
@@ -214,19 +260,63 @@ function ImagePageComponent({ image }) {
             <Tag>{formatCurrency(price)}</Tag>
           </Row>
         )}
-        {/* <Row>
-          <Button
-            variation="primary"
-            size="large"
-            style={{
-              width: "90%",
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-          >
-            {soldOut ? "Search For Similars" : "Add To Cart"}
-          </Button>
-        </Row> */}
+        {!isSuper && (
+          <>
+            <Row style={{ alignItems: "center", gap: "2rem" }}>
+              {image.soldOut && (
+                <ButtonIconText style={{ width: "80%" }}>
+                  <span>Search For Similars</span> <MdOutlineSearch />
+                </ButtonIconText>
+              )}
+              {!image.soldOut && (
+                <ButtonIconText onClick={handleClick} style={{ width: "80%" }}>
+                  <span>Add To Cart</span> <MdOutlineAddShoppingCart />
+                </ButtonIconText>
+              )}
+              <ButtonIconText onClick={() => navigate(-1)}>
+                <span>Back</span>
+                <MdOutlineArrowBack />
+              </ButtonIconText>
+            </Row>
+            <SimilarImages image={image} />
+          </>
+        )}
+        {isSuper && (
+          <Row type="horizental" style={{ gap: "2rem" }}>
+            <Modal>
+              <Modal.Open opens="edit">
+                <ButtonIconText>
+                  <span>Edit</span>
+                  <MdOutlineEditNote />
+                </ButtonIconText>
+              </Modal.Open>
+
+              <Modal.Open opens="delete">
+                <ButtonIconText>
+                  <span>Delete</span>
+                  <MdDeleteForever />
+                </ButtonIconText>
+              </Modal.Open>
+              <ButtonIconText onClick={() => navigate(-1)}>
+                <span>Back</span>
+                <MdOutlineArrowBack />
+              </ButtonIconText>
+              <Modal.Window name="edit">
+                <EditImageForm imageToEdit={image} />
+              </Modal.Window>
+              <Modal.Window name="delete">
+                <ConfirmDelete
+                  onConfirm={() => {
+                    deleteImage(id);
+                    navigate(-1);
+                  }}
+                  disabled={isDeleting}
+                  resourseName="Picture"
+                />
+              </Modal.Window>
+            </Modal>
+          </Row>
+        )}
       </TextContainer>
     </ImagePageContiner>
   );

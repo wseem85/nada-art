@@ -8,7 +8,7 @@ const MiniPictureBoxContainer = styled.div`
   justify-content: space-between;
   box-shadow: var(--shadow-md);
   background-color: var(--color-grey-50);
-  padding: 2rem;
+  padding: 1rem;
   border-radius: var(--border-radius-md);
   overflow-x: scroll;
 `;
@@ -23,23 +23,16 @@ const MiniPictureBoxContainer = styled.div`
 // `;
 const PictureBoxImage = styled.div`
   cursor: pointer;
-  width: 200px;
+  /* width: 200px; */
 `;
 const Image = styled.img`
   width: 100%;
-  max-width: 100%;
-  transform: translateZ(0);
+  object-fit: cover;
+  aspect-ratio: 5/6;
+
   transition: 0.2s;
 
   display: block;
-  @keyframes scale-on {
-    to {
-      transform: translateZ(20px);
-    }
-  }
-  &:hover {
-    animation: scale-on 0.3s ease forwards;
-  }
 `;
 const PictureBoxDetails = styled.div`
   display: flex;

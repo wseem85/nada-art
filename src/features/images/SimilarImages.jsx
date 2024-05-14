@@ -4,6 +4,8 @@ import { useAllImages } from "../../features/images/useAllImages";
 import Heading from "../../ui/Heading";
 import MiniPictureBox from "../../ui/MiniPictureBox";
 import Spinner from "../../ui/Spinner";
+import { media } from "../../utils/helpers";
+import { breakpoints } from "../../utils/variables";
 
 const SimilarImagesContainer = styled.div`
   display: flex;
@@ -11,14 +13,41 @@ const SimilarImagesContainer = styled.div`
   gap: 1.3rem;
   margin-top: 2.3rem;
   margin-bottom: 1.3rem;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  ${media(breakpoints.xs)} {
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
+  }
+  ${media(breakpoints.sm)} {
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+  }
   & > h3 {
     text-align: center;
   }
   & > div {
-    display: flex;
-    gap: 1.3rem;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    place-content: center;
+    row-gap: 1.3rem;
+
+    ${media("350px")} {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 1.3rem;
+    }
+    ${media(breakpoints.sm)} {
+      grid-template-columns: 1fr 1fr 1fr;
+      column-gap: 2.3rem;
+    }
+    ${media(breakpoints.pmd)} {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    & > a {
+      display: inline-block;
+    }
+    /* flex-wrap: wrap; */
+    /* justify-content: center; */
   }
   & > button {
     margin-left: auto;

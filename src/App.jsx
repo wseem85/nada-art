@@ -21,8 +21,9 @@ import { SearchResultsProvider } from "./contexts/SearchResultsContext";
 import { AllImagesProvider } from "./contexts/AllImagesContext";
 import Signup from "./pages/Signup";
 import Account from "./pages/Account";
-import ImagePageLimited from "./pages/ImagePageLimited";
-import ImagePageExtended from "./pages/ImagePageExtended";
+// import ImagePageLimited from "./pages/ImagePageLimited";
+// import ImagePageExtended from "./pages/ImagePageExtended";
+import ImagePage from "./pages/ImagePage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -65,15 +66,9 @@ export default function App() {
                         <Route index element={<Navigate to="home" />} />
                         <Route path="home" element={<Homepage />} />
                         <Route path="originals" element={<Originals />} />
-                        <Route
-                          path="originals/:id"
-                          element={<ImagePageLimited />}
-                        />
+                        <Route path="originals/:id" element={<ImagePage />} />
                         <Route path="search" element={<Search />} />
-                        <Route
-                          path="search/:id"
-                          element={<ImagePageLimited />}
-                        />
+                        <Route path="search/:id" element={<ImagePage />} />
 
                         <Route path="about" element={<About />} />
                         <Route path="account" element={<Account />}></Route>
@@ -81,7 +76,7 @@ export default function App() {
                         <Route path="signup" element={<Signup />}></Route>
                         <Route
                           path="account/image/:id"
-                          element={<ImagePageExtended />}
+                          element={<ImagePage />}
                         />
                       </Route>
                       <Route path="*" element={<PageNotFound />} />

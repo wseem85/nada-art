@@ -7,7 +7,8 @@
 //   HiTrash,
 // } from "react-icons/hi2";
 // import { useNavigate } from "react-router-dom";
-import { MdOutlineEdit } from "react-icons/md";
+import { IoMdOptions } from "react-icons/io";
+
 import { formatCurrency, media } from "../../utils/helpers";
 import { breakpoints } from "../../utils/variables";
 import ButtonIcon from "../../ui/ButtonIcon";
@@ -145,8 +146,8 @@ function ImageRow({
       </Availability>
       <Link to={`/account/image/${id}`}>
         <ButtonIcon>
-          <span> Edit </span>
-          <MdOutlineEdit />
+          <span> options </span>
+          <IoMdOptions />
         </ButtonIcon>
       </Link>
     </Table.Row>

@@ -82,6 +82,8 @@ const CategoryImageDescription = styled.div`
   }
 `;
 const ImageContainer = styled.div`
+  box-shadow: var(--shadow-pic);
+  border-radius: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,9 +95,9 @@ const ImageContainer = styled.div`
   }
 `;
 const Image = styled.img`
-  width: 80%;
-  border-radius: 12px;
-  border: 12px solid var(--color-grey-300);
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid var(--color-grey-300);
 `;
 const DescriptionContainer = styled.div`
   display: flex;
@@ -122,13 +124,13 @@ const Details = styled.div`
   display: flex;
   gap: 1.2rem;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--color-brand-700);
   font-weight: bold;
   /* letter-spacing: 2px; */
   text-transform: capitalize;
   ${media("385px")} {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
   ${media("500px")} {
     font-size: 1.7rem;

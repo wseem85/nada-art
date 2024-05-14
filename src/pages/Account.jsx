@@ -3,6 +3,7 @@ import { useAllImages as useAllImagesQuery } from "../features/images/useAllImag
 import { useCurrentUser } from "../contexts/CurrentUserProvider";
 import { FaUserPen } from "react-icons/fa6";
 import { MdOutlinePassword, MdUpload } from "react-icons/md";
+import { IoMdOptions } from "react-icons/io";
 import { compareDesc, parseISO } from "date-fns";
 import styled from "styled-components";
 // import { PicturesContainer } from "./Originals";
@@ -11,14 +12,14 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import Table from "../ui/Table";
 import ImageRow from "../features/images/ImageRow";
-import ButtonIcon from "../ui/ButtonIcon";
+import ButtonIconText from "../ui/ButtonIconText";
 import Modal from "../features/images/Modal";
 import UpdateUserDataForm from "../features/authentication/UpdateUserDataForm";
 import UpdatePasswordForm from "../features/authentication/UpdatePasswordForm";
 import withScrollToTop from "../ui/withScroolToTop";
 import Heading from "../ui/Heading";
 // import Paragraph from "../ui/Paragraph";
-import Row from "../ui/Row";
+// import Row from "../ui/Row";
 import EditImageForm from "../features/images/EditImageForm";
 import Spinner from "../ui/Spinner";
 import { Link } from "react-router-dom";
@@ -34,6 +35,7 @@ const AccountPageContainer = styled.div`
 `;
 const AccountSettings = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 3rem;
@@ -84,25 +86,34 @@ function AccountComponent() {
   if (currentUser) {
     return (
       <AccountPageContainer>
-        <h3>
+        <Heading as="h2" style={{ textAlign: "center" }}>
           Welcom back,{" "}
           {currentUser?.user_metadata?.fullName ||
             currentUser?.user_metadata?.display_name}
-        </h3>
+        </Heading>
         <AccountSettings>
+          <Heading
+            as="h3"
+            style={{
+              borderBottom: "1px solid var(--color-grey-200)",
+              paddingBottom: "1.3rem",
+            }}
+          >
+            Settings{" "}
+          </Heading>
           <Modal>
             <Modal.Open opens="change-name">
-              <ButtonIcon>
-                <span>Update User Data</span>
+              <ButtonIconText>
+                <span>Change User Data</span>
                 <FaUserPen />
-              </ButtonIcon>
+              </ButtonIconText>
             </Modal.Open>
 
             <Modal.Open opens="change-password">
-              <ButtonIcon>
-                <span>Update Password</span>
+              <ButtonIconText>
+                <span>Change Password</span>
                 <MdOutlinePassword />
-              </ButtonIcon>
+              </ButtonIconText>
             </Modal.Open>
 
             <Modal.Window name="change-name">
@@ -112,38 +123,64 @@ function AccountComponent() {
               <UpdatePasswordForm />
             </Modal.Window>
           </Modal>
+          {isSuperUser && (
+            <>
+              <Modal>
+                <Modal.Open opens="new-product">
+                  <ButtonIconText>
+                    <span>Uploade New Product</span>
+                    <MdUpload />
+                  </ButtonIconText>
+                </Modal.Open>
+
+                <Modal.Window name="new-product">
+                  <EditImageForm />
+                </Modal.Window>
+              </Modal>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "1.2rem",
+                  padding: "2rem",
+                }}
+              >
+                <Paragraph>
+                  {" "}
+                  As an owner of this Web app You can{" "}
+                  <span
+                    style={{
+                      color: "var(--color-green-700)",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Edit
+                  </span>{" "}
+                  or{" "}
+                  <span
+                    style={{
+                      color: "var(--color-red-700)",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Delete
+                  </span>{" "}
+                  any product through going to Image page first by clicking{" "}
+                  <mark>
+                    options <IoMdOptions />
+                  </mark>{" "}
+                  button down in any of the elements that you want to edit or
+                  delete, after that you can do the editing by clicking edit or
+                  delete buttons 0n the product page.
+                </Paragraph>
+                <Heading as="h3">A List Of All Products</Heading>
+              </div>
+            </>
+          )}
         </AccountSettings>
-
-        {isSuperUser && (
-          <Row type="vertical">
-            <Modal>
-              <Modal.Open opens="new-product">
-                <ButtonIcon>
-                  <span>Uploade Product</span>
-                  <MdUpload />
-                </ButtonIcon>
-              </Modal.Open>
-
-              <Modal.Window name="new-product">
-                <EditImageForm />
-              </Modal.Window>
-            </Modal>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "1.2rem",
-                padding: "2rem",
-              }}
-            >
-              <Heading as="h3">A List Of All Products</Heading>
-              <p>You can edit any product by clicking edit button</p>
-            </div>
-          </Row>
-        )}
 
         {isSuperUser && !isXSmallScreen && (
           <Table columns=" 1fr 1fr  1fr">
@@ -198,12 +235,6 @@ function AccountComponent() {
     return (
       <AccountPageContainer>
         <StyledLogo>Nada art</StyledLogo>
-        <Paragraph>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga ullam
-          sint id nulla eligendi corporis dolor tempora natus, reiciendis
-          quisquam dolore impedit quam ratione reprehenderit corrupti obcaecati
-          perferendis blanditiis aut.
-        </Paragraph>
         <Heading as="h3">By having an account you will be able to </Heading>
         <ol style={{ padding: "1rem 2rem", listStyleType: "circle" }}>
           <li style={{ marginLeft: "1rem" }}>

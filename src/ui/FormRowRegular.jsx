@@ -2,30 +2,31 @@ import styled from "styled-components";
 import { breakpoints } from "../utils/variables";
 import { media } from "../utils/helpers";
 
-const StyledFormRow = styled.div`
+const StyledFormRowRegular = styled.div`
   display: grid;
+  /* grid-template-columns: 1fr 2fr; */
   align-items: center;
   /* width: 100%; */
-  max-width: 100%;
+  width: 100%;
   /* grid-template-columns: 1fr 1fr; */
 
-  column-gap: 0.8rem;
-  row-gap: 1.2rem;
+  row-gap: 0.5rem;
   font-size: 80%;
   padding: 0.5rem 0.7rem;
-
-  grid-template-columns: minmax(50px, 120px) 2fr;
+  & > input {
+    min-width: 100%;
+  }
   ${media(breakpoints.xs)} {
     font-size: 100%;
-    grid-template-columns: minmax(50px, 100px) 70%;
+    grid-template-columns: 150px 2fr;
+    column-gap: 1.3rem;
+    row-gap: 3rem;
   }
   ${media(breakpoints.sm)} {
-    grid-template-columns: minmax(50px, 90px) minmax(50px, 250px);
+    grid-template-columns: 200px 500px;
   }
   ${media("850px")} {
-    grid-template-columns: minmax(50px, 90px) minmax(50px, 275px);
   }
-
   &:first-child {
     padding-top: 0;
   }
@@ -48,6 +49,7 @@ const StyledFormRow = styled.div`
 const Label = styled.label`
   font-weight: 500;
   /* width: 100px; */
+  /* width: 100%; */
 `;
 
 const Error = styled.span`
@@ -57,11 +59,11 @@ const Error = styled.span`
 
 function FormRow({ label, error, children }) {
   return (
-    <StyledFormRow>
+    <StyledFormRowRegular>
       {label && <Label htmlFor={children.props.id}>{label}</Label>}
       {children}
       {error && <Error>{error}</Error>}
-    </StyledFormRow>
+    </StyledFormRowRegular>
   );
 }
 

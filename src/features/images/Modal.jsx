@@ -6,53 +6,56 @@ import styled from "styled-components";
 import { media } from "../../utils/helpers";
 import { breakpoints } from "../../utils/variables";
 const StyledModal = styled.div`
-  position: absolute;
-  /* top: 3rem; */
-  left: 0;
-  width: 100%;
-  min-height: 100%;
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  /* height: calc(100vh - 2rem); */
+  /* min-height: 100%; */
   background-color: var(--color-grey-0);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-lg);
-  padding: 3.2rem 4rem;
+  padding: 0.5rem 0.7rem;
   transition: all 0.5s;
   z-index: 8888;
   /* overflow-y: scroll; */
   ${media(breakpoints.sm)} {
-    min-height: 100vh;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     width: 80%;
+    padding: 2.5rem 2rem;
+    /* height: 80vh; */
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 
 const Overlay = styled.div`
-  position: absolute;
+  min-height: 100%;
+  position: fixed;
   z-index: 8880;
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 150%;
+  /* min-height: 150%; */
   background-color: var(--backdrop-color);
   backdrop-filter: blur(4px);
   /* overflow-x: h; */
   transition: all 0.5s;
   ${media(breakpoints.sm)} {
-    min-height: 100vh;
+    /* min-height: 100vh; */
   }
 `;
 
 const Button = styled.button`
   background: none;
   border: none;
-  padding: 0.4rem;
+  padding: 0.3rem;
   border-radius: var(--border-radius-sm);
   transform: translateX(0.8rem);
   transition: all 0.2s;
   position: absolute;
-  top: 1.2rem;
-  right: 1.9rem;
+  top: 0.2rem;
+  right: 0.9rem;
 
   &:hover {
     background-color: var(--color-grey-100);

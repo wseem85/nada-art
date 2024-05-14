@@ -11,10 +11,17 @@ import FormRow from "../../ui/FormRow";
 // import useCreateImage from "./useCreateImage";
 import useEditImage from "./useEditImge";
 
-import { ResponsiveFormRow } from "../../ui/ResponsiveFormRow";
+// import { ResponsiveFormRow } from "../../ui/ResponsiveFormRow";
 import { FormButton } from "../../ui/FormButton";
 import useCreateImage from "./useCreateImage";
-
+import Heading from "../../ui/Heading";
+// import { media } from "../../utils/helpers";
+// import { breakpoints } from "../../utils/variables";
+import styled from "styled-components";
+const StyledFormTitle = styled(Heading)`
+  margin-bottom: 2rem;
+  color: var(--color-brand-300);
+`;
 function EditImageForm({ imageToEdit = {}, onCloseModal }) {
   const { id: imageId, ...editValues } = imageToEdit;
   const { src: srcString } = imageToEdit;
@@ -69,113 +76,144 @@ function EditImageForm({ imageToEdit = {}, onCloseModal }) {
       onSubmit={handleSubmit(onSubmit, onError)}
       type={onCloseModal ? "modal" : "regular"}
     >
-      <ResponsiveFormRow>
-        <FormRow label="Image Title" error={errors?.title?.message}>
-          <Input
-            type="text"
-            id="title"
-            {...register("title", {
-              required: "this feild is required",
-            })}
-            disabled={isWorking}
-          />
-        </FormRow>
-        <FormRow label="Image Category" error={errors?.category?.message}>
-          <Input
-            type="text"
-            id="category"
-            {...register("category", {
-              required: "this feild is required",
-            })}
-            disabled={isWorking}
-          />
-        </FormRow>
-      </ResponsiveFormRow>
-      <ResponsiveFormRow>
-        <FormRow label="Price" error={errors?.price?.message}>
-          <Input
-            type="number"
-            id="price"
-            {...register("price", {
-              required: "this feild is required",
-            })}
-            disabled={isWorking}
-          />
-        </FormRow>
+      <StyledFormTitle as="h3">
+        {isEditSession ? "Edit Image " : "Upload New Image"}
+      </StyledFormTitle>
 
-        <FormRow label="Discount" error={errors?.discount?.message}>
-          <Input
-            type="number"
-            id="discount"
-            defaultValue={0}
-            {...register("discount", {
-              required: "this feild is required",
-              validate: (value) =>
-                value < 99 || "Discount is a Percentage Value of the price ",
-            })}
-            disabled={isWorking}
-          />
-        </FormRow>
-      </ResponsiveFormRow>
-      <ResponsiveFormRow>
-        <FormRow label="sold Out" error={errors?.soldOut?.message}>
-          <Input
-            type="text"
-            id="soldOut"
-            defaultValue="false"
-            {...register("soldOut", {
-              required: "this feild is required",
-              validate: (value) =>
-                value !== "false" ||
-                value !== "true" ||
-                "You must insert one of these values (false or true)",
-            })}
-            disabled={isWorking}
-          />
-        </FormRow>
-        <div></div>
-      </ResponsiveFormRow>
-      <ResponsiveFormRow>
-        <FormRow label="Image Width" error={errors?.width?.message}>
-          <Input
-            type="number"
-            id="width"
-            defaultValue={0}
-            {...register("width", {
-              required: "this feild is required",
-            })}
-            disabled={isWorking}
-          />
-        </FormRow>
-        <FormRow label="Image Height" error={errors?.height?.message}>
-          <Input
-            type="number"
-            id="height"
-            defaultValue={0}
-            {...register("height", {
-              required: "this feild is required",
-            })}
-            disabled={isWorking}
-          />
-        </FormRow>
-      </ResponsiveFormRow>
-
+      <div></div>
       <FormRow
-        label="Description"
-        error={errors?.description?.message}
-        style={{ gridTemplateColumns: "1fr" }}
+        type="editimageform"
+        label="Title"
+        error={errors?.title?.message}
       >
-        <Textarea
-          type="number"
-          id="description"
-          defaultValue=""
-          {...register("description", {
+        <Input
+          type="text"
+          id="title"
+          {...register("title", {
             required: "this feild is required",
           })}
+          disabled={isWorking}
+        />
+      </FormRow>
+      <FormRow
+        type="editimageform"
+        label="Category"
+        error={errors?.category?.message}
+      >
+        <Input
+          type="text"
+          id="category"
+          {...register("category", {
+            required: "this feild is required",
+          })}
+          disabled={isWorking}
         />
       </FormRow>
 
-      <FormRow label="Image photo" error={errors?.src?.message}>
+      <FormRow
+        type="editimageform"
+        label="Price"
+        error={errors?.price?.message}
+      >
+        <Input
+          type="number"
+          id="price"
+          {...register("price", {
+            required: "this feild is required",
+          })}
+          disabled={isWorking}
+        />
+      </FormRow>
+
+      <FormRow
+        type="editimageform"
+        label="Discount"
+        error={errors?.discount?.message}
+      >
+        <Input
+          type="number"
+          id="discount"
+          defaultValue={0}
+          {...register("discount", {
+            required: "this feild is required",
+            validate: (value) =>
+              value < 99 || "Discount is a Percentage Value of the price ",
+          })}
+          disabled={isWorking}
+        />
+      </FormRow>
+
+      <FormRow
+        type="editimageform"
+        label="sold Out"
+        error={errors?.soldOut?.message}
+      >
+        <Input
+          type="text"
+          id="soldOut"
+          defaultValue="false"
+          {...register("soldOut", {
+            required: "this feild is required",
+            validate: (value) =>
+              value !== "false" ||
+              value !== "true" ||
+              "You must insert one of these values (false or true)",
+          })}
+          disabled={isWorking}
+        />
+      </FormRow>
+      <div></div>
+
+      <FormRow
+        type="editimageform"
+        label="Width"
+        error={errors?.width?.message}
+      >
+        <Input
+          type="number"
+          id="width"
+          defaultValue={0}
+          {...register("width", {
+            required: "this feild is required",
+          })}
+          disabled={isWorking}
+        />
+      </FormRow>
+      <FormRow
+        type="editimageform"
+        label="Height"
+        error={errors?.height?.message}
+      >
+        <Input
+          type="number"
+          id="height"
+          defaultValue={0}
+          {...register("height", {
+            required: "this feild is required",
+          })}
+          disabled={isWorking}
+        />
+      </FormRow>
+
+      <FormRow
+        type="editimageform"
+        label="Description"
+        error={errors?.description?.message}
+        style={{ gridTemplateColumns: "unset" }}
+      >
+        <div>
+          <Textarea
+            type="text"
+            id="description"
+            defaultValue=""
+            {...register("description", {
+              required: "this feild is required",
+            })}
+          />
+        </div>
+      </FormRow>
+
+      <FormRow type="editimageform" label="photo" error={errors?.src?.message}>
         <FileInput
           id="src"
           accept="image/*"
@@ -185,7 +223,7 @@ function EditImageForm({ imageToEdit = {}, onCloseModal }) {
         />
       </FormRow>
 
-      <FormRow>
+      <FormRow type="editimageform">
         {/* type is an HTML attribute! */}
         <FormButton
           variation="secondary"
@@ -195,7 +233,7 @@ function EditImageForm({ imageToEdit = {}, onCloseModal }) {
           Cancel
         </FormButton>
         <FormButton disabled={isWorking}>
-          {isEditSession ? "Edit Image" : "Upload Image"}
+          {isEditSession ? "Update" : "Upload"}
         </FormButton>
       </FormRow>
     </Form>

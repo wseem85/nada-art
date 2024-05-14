@@ -2,7 +2,7 @@ import { useAllImages as useAllImagesQuery } from "../features/images/useAllImag
 import { useAllImages as useAllImagesContext } from "../contexts/AllImagesContext";
 import Hero from "../ui/Hero";
 import HeroTitling from "../ui/HeroTitling";
-import MeetTheArtist from "../ui/MeetTheArtist";
+import PageContentContainer from "../ui/PageContentContainer";
 import NewArtWorks from "../ui/NewArtWorks";
 import PopularCategories from "../ui/PopularCategories";
 import Spinner from "../ui/Spinner";
@@ -45,16 +45,14 @@ function HomepageComponent() {
           <Spinner />
         </div>
       ) : (
-        <>
+        <PageContentContainer>
           <PopularCategories
             categories={categories}
             categoriesImages={categoriesImages}
           />
           <NewArtWorks allImages={allImages} />
-        </>
+        </PageContentContainer>
       )}
-
-      <MeetTheArtist />
     </>
   );
 }

@@ -4,6 +4,7 @@ import styled, { css } from "styled-components";
 const HeaderCartButton = styled.button`
   background: none;
   position: relative;
+  top: 3px;
   border: none;
   padding: 0.6rem;
   border-radius: var(--border-radius-sm);

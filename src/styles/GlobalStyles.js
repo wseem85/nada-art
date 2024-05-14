@@ -15,7 +15,7 @@ const GlobalStyles = createGlobalStyle`
   --color-brand-highTransparency:rgb(0,56,46,0.1);
   --color-brand-midTransparency:rgb(0,56,46,0.3);
   --color-brand-smallTransparency:rgb(0,56,46,0.5);
-  --color-brand-xsmallTransparency:rgb(0,56,46,0.6);
+  --color-brand-xsmallTransparency:rgb(0,56,46,0.8);
   --color-brand-50: #0d8027;
   --color-brand-100: #0c7025;
   --color-brand-200: #0b5c24;
@@ -73,6 +73,7 @@ const GlobalStyles = createGlobalStyle`
   --shadow-sm: 0 1px 2px rgba(96,31,17, 0.08);
   --shadow-md: 0px 0.6rem 2.4rem rgba(96,31,17, 0.1);
   --shadow-lg: 0 2.4rem 3.2rem rgba(96,31,17, 0.15);
+  --shadow-pic: 0px 2px 8px 0px  rgba(96,31,17, 0.15);
   --line-sm: 1.2;
   --line-md: 1.5;
   --line-lg: 2;
@@ -180,9 +181,9 @@ select:focus {
 }
 
 /* Parent selector, finally 😃 */
-button:has(svg) {
+/* button:has(svg) {
   line-height: 0;
-}
+} */
 
 a {
   color: inherit;

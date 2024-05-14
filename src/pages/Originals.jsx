@@ -1,47 +1,30 @@
 import styled from "styled-components";
 
 import HeroOriginals from "../ui/HeroOriginals";
-import PageContainer from "../ui/PageContainer";
-import PictureBox from "../features/images/PictureBox";
+import PageContentContainer from "../ui/PageContentContainer";
+
 import Filter from "../ui/Filter";
-// import Spinner from "../ui/Spinner";
+import Spinner from "../ui/Spinner";
 import { media } from "../utils/helpers";
 import { breakpoints } from "../utils/variables";
 import Heading from "../ui/Heading";
 import { MdOutlineFilterNone } from "react-icons/md";
 
 import ButtonIcon from "../ui/ButtonIcon";
-import Paragraph from "../ui/Paragraph";
+// import Paragraph from "../ui/Paragraph";
 import { useEffect, useState } from "react";
-import Spinner from "../ui/Spinner";
-import Error from "../ui/Error";
+// import Spinner from "../ui/Spinner";
+// import Error from "../ui/Error";
 import { useImages } from "../features/images/useImages";
 // import { useAllImages } from "../features/images/useAllImages";
 import { FiltersProvider } from "../contexts/FiltersContext";
 // import { useQueryClient } from "@tanstack/react-query";
 import withScrollToTop from "../ui/withScroolToTop";
 import { useAllImages } from "../contexts/AllImagesContext";
+import FilteredOriginals from "./FilteredOriginals";
 
 // import { useSearchParams } from "react-router-dom";
-export const PicturesContainer = styled.div`
-  margin-top: 2rem;
-  display: grid;
-  /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
-  gap: 1rem;
-  ${media("690px")} {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-  ${media(breakpoints.md)} {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-  }
 
-  ${media(breakpoints.lg)} {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 4rem;
-  }
-`;
 const OperationContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -51,7 +34,15 @@ const OperationContainer = styled.div`
 
   /* justify-content: space-between; */
 `;
-
+const EditedPageContentContainer = styled(PageContentContainer)`
+  padding: 1rem 0.6rem;
+  ${media(breakpoints.xs)} {
+    padding: 2rem 1rem;
+  }
+  ${media(breakpoints.sm)} {
+    padding: 3rem 2.3rem;
+  }
+`;
 function OriginalsComponent() {
   const [showFilter, setShowFilter] = useState(false);
   const [allCategories, setAllCategories] = useState([]);
@@ -59,18 +50,26 @@ function OriginalsComponent() {
   const [minMaxPrice, setMinMaxPrice] = useState([]);
   const [filters, setFilters] = useState([]);
   // const queryClient = useQueryClient();
+
+  // const { allImages, isLoading: isLoadingAllImages } = useAllImages();
+  const { allImages } = useAllImages();
+  // const allImages = queryClient.getQueryData(["allImages"]);
   const {
     images,
     isLoading: isLoadingImages,
     error: errorImages,
   } = useImages();
-  // const { allImages, isLoading: isLoadingAllImages } = useAllImages();
-  const { allImages } = useAllImages();
-  // const allImages = queryClient.getQueryData(["allImages"]);
-  console.log(allImages);
+  useEffect(
+    function () {
+      window.scrollTo(0, 700);
+    },
+    [images]
+  );
+
   function handleShowFilter() {
     setShowFilter((show) => !show);
   }
+
   useEffect(
     function () {
       function setValues() {
@@ -121,7 +120,7 @@ function OriginalsComponent() {
     <FiltersProvider>
       <HeroOriginals />
 
-      <PageContainer>
+      <EditedPageContentContainer>
         {showFilter && (
           <Filter filters={filters} setShowFilter={setShowFilter} />
         )}
@@ -136,30 +135,13 @@ function OriginalsComponent() {
           <ButtonIcon onClick={handleShowFilter}>
             <span>Filter</span> <MdOutlineFilterNone />
           </ButtonIcon>
-          <p>{images?.length} Products</p>
         </OperationContainer>
-
-        {errorImages && (
-          <Error>Somthing went wrong {errorImages.message}</Error>
-        )}
-        {images?.length === 0 ? (
-          <Paragraph>There are No Images matches Your Search </Paragraph>
-        ) : (
-          ""
-        )}
-        <div>
-          {isLoadingImages && <Spinner />}
-          {errorImages && <Error message={errorImages.message} />}
-          {images?.length === 0 && (
-            <p>There is no pictures matches your search</p>
-          )}
-        </div>
-        <PicturesContainer>
-          {images?.map((image) => (
-            <PictureBox key={image.title} picture={image}></PictureBox>
-          ))}
-        </PicturesContainer>
-      </PageContainer>
+        <FilteredOriginals
+          images={images}
+          isLoadingImages={isLoadingImages}
+          errorImages={errorImages}
+        />
+      </EditedPageContentContainer>
     </FiltersProvider>
   );
 }

@@ -17,7 +17,7 @@ import { breakpoints } from "../utils/variables";
 const StyledNav = styled.nav`
   display: flex;
 
-  gap: 0.5rem;
+  gap: 1rem;
   align-items: center;
   ${media(breakpoints.sm)} {
     gap: 1.3rem;
@@ -50,7 +50,7 @@ export default function NavMenu() {
   // );
   return (
     <StyledNav>
-      <CartButton />
+      <CartButton style={{ lineHeight: "2.5rem" }} />
       {/* {isLoadingUser && <SpinnerMini />}
       {currentUser && isAuthenticated ? <UserInfo user={user} /> : <Login />} */}
       <Hamburger />

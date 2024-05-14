@@ -18,7 +18,7 @@ const HeroContainer = styled.div`
   transition: background-image 1s ease-in-out;
 
   background-color: var(--color-brand-50);
-  ${media(breakpoints.sm)} {
+  ${media("500px")} {
     background-image: url("/images/originalshero.webp");
   }
 `;

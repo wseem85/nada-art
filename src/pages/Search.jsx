@@ -62,12 +62,16 @@ const PicturesContainer = styled.div`
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
   gap: 1rem;
-  ${media("690px")} {
+  ${media("350px")} {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
   }
-  ${media(breakpoints.md)} {
+  ${media(breakpoints.sm)} {
     grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+  ${media(breakpoints.md)} {
+    grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
   }
 

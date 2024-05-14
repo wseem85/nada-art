@@ -1,17 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import SimilarImages from "../features/images/SimilarImages";
 import { useImage } from "../features/images/useImage";
-import { MdOutlineArrowBack } from "react-icons/md";
+
+import {
+  MdOutlineAddShoppingCart,
+  MdOutlineSearch,
+  MdOutlineArrowBack,
+} from "react-icons/md";
 // import Button from "../ui/Button";
 import Spinner from "../ui/Spinner";
 import ImagePage from "./ImagePage";
-import ButtonIcon from "../ui/ButtonIcon";
+// import ButtonIcon from "../ui/ButtonIcon";
 import Row from "../ui/Row";
-import Button from "../ui/Button";
+// import Button from "../ui/Button";
 import useUser from "../features/authentication/useUser";
 import withScrollToTop from "../ui/withScroolToTop";
 import useAddToCart from "../hooks/useAddToCart";
 import { useStoredCart } from "../contexts/StoredCartContext";
+import ButtonIconText from "../ui/ButtonIconText";
 function ImagePageLimitedComponent() {
   const { user } = useUser();
   const { setStoredCart } = useStoredCart();
@@ -29,42 +35,27 @@ function ImagePageLimitedComponent() {
       <ImagePage image={image} />
       {!isSuper && (
         <>
-          <Row>
+          <Row style={{ alignItems: "center" }}>
             {image.soldOut && (
-              <Button
-                variation="primary"
-                size="large"
-                style={{
-                  width: "90%",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              >
-                Search For Similars
-              </Button>
+              <ButtonIconText style={{ width: "80%" }}>
+                <span>Search For Similars</span> <MdOutlineSearch />
+              </ButtonIconText>
             )}
             {!image.soldOut && (
-              <Button
-                variation="primary"
-                size="large"
-                style={{
-                  width: "90%",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-                onClick={handleClick}
-              >
-                Add To Cart
-              </Button>
+              <ButtonIconText onClick={handleClick} style={{ width: "80%" }}>
+                <span>Add To Cart</span> <MdOutlineAddShoppingCart />
+              </ButtonIconText>
             )}
           </Row>
           <SimilarImages image={image} />
         </>
       )}
-      <ButtonIcon onClick={() => navigate(-1)}>
-        <span>Back</span>
-        <MdOutlineArrowBack />
-      </ButtonIcon>
+      <Row style={{ alignItems: "center", marginTop: "2.3rem" }}>
+        <ButtonIconText onClick={() => navigate(-1)}>
+          <span>Go Back</span>
+          <MdOutlineArrowBack />
+        </ButtonIconText>
+      </Row>
     </div>
   );
 }

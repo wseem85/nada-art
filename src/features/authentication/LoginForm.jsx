@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import Input from "../../ui/Input";
-import FormRowVertical from "../../ui/FormRowVertical";
+import FormRowRegular from "../../ui/FormRowRegular";
 // import FormRow from "../../ui/FormRow";
 import SpinnerMini from "../../ui/SpinnerMini";
 import useLogin from "./useLogin";
@@ -33,7 +33,7 @@ function LoginForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <FormRowVertical label="Email address">
+      <FormRowRegular label="Email address">
         <Input
           type="email"
           id="email"
@@ -43,8 +43,8 @@ function LoginForm() {
           onChange={(e) => setEmail(e.target.value)}
           disabled={isLoggingIn}
         />
-      </FormRowVertical>
-      <FormRowVertical label="Password">
+      </FormRowRegular>
+      <FormRowRegular label="Password">
         <Input
           type="password"
           id="password"
@@ -53,12 +53,12 @@ function LoginForm() {
           onChange={(e) => setPassword(e.target.value)}
           disabled={isLoggingIn}
         />
-      </FormRowVertical>
-      <FormRowVertical>
+      </FormRowRegular>
+      <FormRowRegular>
         <Button size="large" disabled={isLoggingIn}>
           {!isLoggingIn ? "Log in" : <SpinnerMini />}
         </Button>
-      </FormRowVertical>
+      </FormRowRegular>
       <div
         style={{
           display: "flex",

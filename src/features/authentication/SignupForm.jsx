@@ -3,13 +3,16 @@ import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import Input from "../../ui/Input";
-import FormRowVertical from "../../ui/FormRowVertical";
+import FormRowRegular from "../../ui/FormRowRegular";
 import SpinnerMini from "../../ui/SpinnerMini";
 import useSignup from "./useSignup";
 import { Link, useNavigate } from "react-router-dom";
+// import styled from "styled-components";
 // import { useCurrentUser } from "../../contexts/CurrentUserProvider";
 // import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
+// const EditedInput = styled(Input)`
+//   width: 100%;
+// `;
 function SignupForm() {
   //   const { setCurrentUser } = useCurrentUser();
   const { register, handleSubmit, getValues, formState } = useForm();
@@ -34,7 +37,7 @@ function SignupForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRowVertical label="Full Name" error={errors?.fullName?.message}>
+      <FormRowRegular label="Full Name" error={errors?.fullName?.message}>
         <Input
           type="text"
           id="fullName"
@@ -46,8 +49,8 @@ function SignupForm() {
           })}
         />
         {/* {errors.fullName && <p>{errors.fullName.message}</p>} */}
-      </FormRowVertical>
-      <FormRowVertical label="Email address" error={errors?.email?.message}>
+      </FormRowRegular>
+      <FormRowRegular label="Email address" error={errors?.email?.message}>
         <Input
           type="email"
           id="email"
@@ -62,8 +65,8 @@ function SignupForm() {
             },
           })}
         />
-      </FormRowVertical>
-      <FormRowVertical label="Password" error={errors?.password?.message}>
+      </FormRowRegular>
+      <FormRowRegular label="Password" error={errors?.password?.message}>
         <Input
           type="password"
           id="password"
@@ -77,9 +80,9 @@ function SignupForm() {
             },
           })}
         />
-      </FormRowVertical>
+      </FormRowRegular>
 
-      <FormRowVertical
+      <FormRowRegular
         label="Confirm Password"
         error={errors?.confirmedPassword?.message}
       >
@@ -94,13 +97,13 @@ function SignupForm() {
               getValues().password === value || "Passwords do not match",
           })}
         />
-      </FormRowVertical>
-      <FormRowVertical>
+      </FormRowRegular>
+      <FormRowRegular>
         <Button size="large">
           {/* <SpinnerMini /> */}
           {!isSigningup ? "Signup" : <SpinnerMini />}
         </Button>
-      </FormRowVertical>
+      </FormRowRegular>
       <div
         style={{
           display: "flex",

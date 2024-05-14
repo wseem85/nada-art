@@ -34,8 +34,14 @@ const StyledFilter = styled.div`
   left: 0;
   top: 0;
   width: 90vw;
-
+  transform: translateX(-100%);
+  animation: move-in 0.2s linear forwards;
   height: 100%;
+  @keyframes move-in {
+    to {
+      transform: translateX(0);
+    }
+  }
   ${media(breakpoints.sm)} {
     width: 50vw;
   }
@@ -218,6 +224,7 @@ function ListItemsContainer({ filters, setShowFilter }) {
     else searchParams.delete("maxPrice");
     setSearchParams(searchParams);
     setShowFilter(false);
+
     // if (filter === "Size") {
     //   searchParams.set(`${filter}-width`, entry.width);
     //   searchParams.set(`${filter}-height`, entry.height);
@@ -311,7 +318,6 @@ const StyledRange = styled.input`
   }
 `;
 function RangeInputWithLabel({ entry }) {
-  console.log(entry);
   // const [searchParams, setSearchParams] = useSearchParams();
   const { maxPrice, dispatch } = useFilters();
   const [currentValue, setCurrentValue] = useState(maxPrice);

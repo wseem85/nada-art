@@ -10,14 +10,14 @@ import { compareDesc, parseISO } from "date-fns";
 import NewImageBox from "./NewImageBox";
 const Container = styled.div`
   display: grid;
-
-  place-items: center;
-  column-gap: 3.5rem;
-  row-gap: 5rem;
-  ${media(breakpoints.sm)} {
+  ${media("350px")} {
     grid-template-columns: 1fr 1fr;
   }
-  ${media(breakpoints.md)} {
+
+  place-items: center;
+  column-gap: 1.3rem;
+  row-gap: 2.3rem;
+  ${media(breakpoints.sm)} {
     grid-template-columns: 1fr 1fr 1fr;
   }
 `;
@@ -34,7 +34,7 @@ export default function NewArtWorks({ allImages }) {
   const newPictures = sorted?.slice(0, 6);
 
   return (
-    <Section>
+    <Section style={{ marginBottom: "2.3rem" }}>
       <SectionHeading>New Artworks</SectionHeading>
 
       <Container>

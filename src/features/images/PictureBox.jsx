@@ -80,6 +80,10 @@ const PictureBoxDetails = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  font-size: 90%;
+  ${media(breakpoints.xs)} {
+    font-size: 100%;
+  }
   /* justify-content: center; */
   gap: 0.8rem;
   /* min-height: 140px; */
@@ -91,14 +95,14 @@ const PictureBoxDetails = styled.div`
   /* height: fit-content; */
   color: white;
   background-color: var(--color-brand-xsmallTransparency);
-  height: 70%;
+  height: 80%;
 
   @keyframes change-height {
     from {
       height: 0;
     }
     to {
-      height: 70%;
+      height: 80%;
     }
   }
   animation: change-height 0.1s linear;
@@ -152,6 +156,7 @@ const PictureBoxDetails = styled.div`
 `;
 const StyledShowDetailsButton = styled(ButtonIconText)`
   position: absolute;
+  padding: 0.3rem 0.5rem;
   top: 0;
   left: 50%;
   z-index: 10;
@@ -159,6 +164,7 @@ const StyledShowDetailsButton = styled(ButtonIconText)`
   border: none;
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 0;
+
   & > svg {
     color: var(--color-brand-300);
   }
@@ -176,6 +182,7 @@ const StyledShowDetailsButton = styled(ButtonIconText)`
 `;
 const StyledButtonsContainer = styled.div`
   display: flex;
+  gap: 1.3rem;
   justify-content: space-between;
   align-items: center;
 `;
@@ -257,7 +264,7 @@ export default function PictureBox({ picture }) {
                 </div>
               )}
 
-              {!soldOut && discount && (
+              {!soldOut && discount !== 0 && (
                 <div style={{ maxWidth: "100%" }}>
                   <span>
                     <MdOutlinePriceCheck />

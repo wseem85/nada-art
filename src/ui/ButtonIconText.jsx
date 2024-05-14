@@ -9,7 +9,7 @@ const ButtonIconText = styled.button`
   background: transparent;
   border: 1px solid var(--color-brand-300);
   position: relative;
-  padding: 0.6rem 0.8rem;
+  padding: 0.3rem 0.4rem;
   border-radius: var(--border-radius-sm);
   color: var(--color-brand-700);
   transition: all 0.3s;

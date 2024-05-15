@@ -18,6 +18,7 @@ import Heading from "../../ui/Heading";
 // import { media } from "../../utils/helpers";
 // import { breakpoints } from "../../utils/variables";
 import styled from "styled-components";
+import SpinnerMini from "../../ui/SpinnerMini";
 const StyledFormTitle = styled(Heading)`
   margin-bottom: 2rem;
   color: var(--color-brand-300);
@@ -232,8 +233,8 @@ function EditImageForm({ imageToEdit = {}, onCloseModal }) {
         >
           Cancel
         </FormButton>
-        <FormButton disabled={isWorking}>
-          {isEditSession ? "Update" : "Upload"}
+        <FormButton disabled={isWorking} style={{ minWidth: "12rem" }}>
+          {!isWorking ? isEditSession ? "Update" : "Upload" : <SpinnerMini />}
         </FormButton>
       </FormRow>
     </Form>

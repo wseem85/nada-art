@@ -85,7 +85,7 @@ const PictureBoxDetails = styled.div`
     font-size: 100%;
   }
   /* justify-content: center; */
-  gap: 0.8rem;
+  gap: 0.6rem;
   /* min-height: 140px; */
   padding: 0.7rem;
   position: absolute;
@@ -95,14 +95,14 @@ const PictureBoxDetails = styled.div`
   /* height: fit-content; */
   color: white;
   background-color: var(--color-brand-xsmallTransparency);
-  height: 80%;
+  height: 85%;
 
   @keyframes change-height {
     from {
       height: 0;
     }
     to {
-      height: 80%;
+      height: 85%;
     }
   }
   animation: change-height 0.1s linear;
@@ -120,7 +120,7 @@ const PictureBoxDetails = styled.div`
   }
   & > div > div {
     display: flex;
-    gap: 0.7rem;
+    gap: 0.5rem;
     align-items: center;
   }
   & > div > div > span {

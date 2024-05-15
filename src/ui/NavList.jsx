@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useAppNav } from "../contexts/AppNavContext";
 import { media } from "../utils/helpers";
 import { breakpoints } from "../utils/variables";
+import { useCurrentUser } from "../contexts/CurrentUserProvider";
 // import useOutSideClick from "../hooks/useOutsideClick";
 const StyledNavList = styled.ul`
   font-size: inherit;
@@ -46,14 +47,21 @@ const StyledNavList = styled.ul`
 `;
 export default function NavList() {
   const { setCollapsed } = useAppNav();
+  const { currentUser, isLoading: isLoadingCurrentUser } = useCurrentUser();
+  let lastLink;
+  if (isLoadingCurrentUser) lastLink = "Loadiing...";
+  else if (!currentUser) lastLink = "Login";
+  else lastLink = "Logout";
 
   return (
     <StyledNavList>
-      {["Home", "Originals", "About", "Search", "Account"].map((item) => (
-        <ListItem item={item} key={item} onSetCollapsed={setCollapsed}>
-          {item}
-        </ListItem>
-      ))}
+      {["Home", "Originals", "Search", "About", "Settings", lastLink].map(
+        (item) => (
+          <ListItem item={item} key={item} onSetCollapsed={setCollapsed}>
+            {item}
+          </ListItem>
+        )
+      )}
     </StyledNavList>
   );
 }

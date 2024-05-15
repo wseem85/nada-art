@@ -31,6 +31,8 @@ const AccountPageContainer = styled.div`
   flex-direction: column;
   gap: 2.3rem;
   align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
   /* min-height: 100vh; */
 `;
 const AccountSettings = styled.div`
@@ -42,7 +44,7 @@ const AccountSettings = styled.div`
   flex-wrap: wrap;
   padding: 1rem 1.4rem;
 `;
-function AccountComponent() {
+function SettingsComponent() {
   // const navigate = useNavigate();
   // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { currentUser, isLoading: isLoadingCurrentUser } = useCurrentUser();
@@ -235,7 +237,57 @@ function AccountComponent() {
     return (
       <AccountPageContainer>
         <StyledLogo>Nada art</StyledLogo>
-        <Heading as="h3">By having an account you will be able to </Heading>
+        <Heading as="h3">You are not signed in ! </Heading>
+        <Heading as="h3">
+          Please Log in if you have an account , or you can create an account
+          any time ..
+        </Heading>
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "2.3rem",
+            display: "flex",
+            gap: "1.3rem",
+            flexDirection: "column",
+          }}
+        >
+          <Link
+            style={{
+              textDecoration: "underline",
+              color: "var(--color-brand-700)",
+              fontWeight: "bold",
+              display: "inline-block",
+            }}
+            to="/signup"
+          >
+            <p
+              style={{
+                textTransform: "uppercase",
+                letterSpacing: "1.5px",
+                color: "var(--color-green-700)",
+              }}
+            >
+              create an account
+            </p>
+          </Link>{" "}
+          <p>Already have an account? </p>
+          <Link
+            style={{
+              textDecoration: "underline",
+              color: "var(--color-green-700)",
+              fontWeight: "bold",
+              display: "block",
+            }}
+            to="/login"
+          >
+            <span
+              style={{ textTransform: "uppercase", letterSpacing: "1.5px" }}
+            >
+              Login
+            </span>
+          </Link>
+        </div>
+        <Heading as="h4">By having an account you will be able to :</Heading>
         <ol style={{ padding: "1rem 2rem", listStyleType: "circle" }}>
           <li style={{ marginLeft: "1rem" }}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis,
@@ -250,37 +302,8 @@ function AccountComponent() {
             natus.
           </li>
         </ol>
-        <Link
-          style={{
-            textDecoration: "underline",
-            color: "var(--color-brand-700)",
-            fontWeight: "bold",
-          }}
-          to="/signup"
-        >
-          <span style={{ textTransform: "uppercase", letterSpacing: "1.5px" }}>
-            create an account
-          </span>
-        </Link>{" "}
-        <span>
-          Already have an account{" "}
-          <Link
-            style={{
-              textDecoration: "underline",
-              color: "var(--color-brand-700)",
-              fontWeight: "bold",
-            }}
-            to="/login"
-          >
-            <span
-              style={{ textTransform: "uppercase", letterSpacing: "1.5px" }}
-            >
-              sign in
-            </span>
-          </Link>
-        </span>
       </AccountPageContainer>
     );
 }
-const Account = withScrollToTop(AccountComponent);
-export default Account;
+const Settings = withScrollToTop(SettingsComponent);
+export default Settings;

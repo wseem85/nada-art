@@ -9,7 +9,7 @@ import Paragraph from "../ui/Paragraph";
 import Row from "../ui/Row";
 import SocialMediaIcon from "../ui/SocialMediaIcon";
 import Form from "../ui/Form";
-import FormRow from "../ui/FormRow";
+import FormRowRegular from "../ui/FormRowRegular";
 import { FormButton } from "../ui/FormButton";
 import Input from "../ui/Input";
 import Textarea from "../ui/TextArea";
@@ -21,7 +21,10 @@ const AboutPageContainer = styled.div`
   flex-direction: column;
   gap: 3.2rem;
   align-items: center;
-  /* min-height: 100vh; */
+  min-width: 100vw;
+  overflow: hidden;
+  padding-left: 1.3rem;
+  padding-right: 1.3rem;
 `;
 const TitleMain = styled.div`
   color: #e5e5e5;
@@ -225,7 +228,7 @@ export default function About() {
       </TitleMain>
 
       <Row type="vertical">
-        <Paragraph>
+        <Paragraph style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex itaque
           quasi, asperiores voluptatum ducimus iusto nam minima praesentium unde
           quis quidem pariatur molestiae ullam sit quam. Natus labore at ratione
@@ -255,7 +258,7 @@ export default function About() {
         <div>
           <img src="images/about-2.webp" />
         </div>
-        <div>
+        <div style={{ marginLeft: "1.4rem", marginRight: "1.4rem" }}>
           <Heading as="h2">Behind the Scenes</Heading>
           <Paragraph>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa ad
@@ -306,7 +309,7 @@ export default function About() {
           style={{ padding: "1.3rem 2.3rem" }}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <FormRow label="Full Name" error={errors?.fullName?.message}>
+          <FormRowRegular label="Full Name" error={errors?.fullName?.message}>
             <Input
               type="text"
               id="fullName"
@@ -314,8 +317,8 @@ export default function About() {
                 required: "this feild is required",
               })}
             />
-          </FormRow>
-          <FormRow label="Phone Number" error={errors?.phone?.message}>
+          </FormRowRegular>
+          <FormRowRegular label="Phone Number" error={errors?.phone?.message}>
             <Input
               type="number"
               id="phone"
@@ -327,8 +330,8 @@ export default function About() {
                 },
               })}
             />
-          </FormRow>
-          <FormRow label="Email Address" error={errors?.email?.message}>
+          </FormRowRegular>
+          <FormRowRegular label="Email Address" error={errors?.email?.message}>
             <Input
               type="email"
               id="email"
@@ -340,8 +343,8 @@ export default function About() {
                 },
               })}
             />
-          </FormRow>
-          <FormRow label="Message" error={errors?.message?.message}>
+          </FormRowRegular>
+          <FormRowRegular label="Message" error={errors?.message?.message}>
             <Textarea
               type="text"
               id="message"
@@ -349,10 +352,10 @@ export default function About() {
                 required: "please insert your message ",
               })}
             />
-          </FormRow>
-          <FormRow>
+          </FormRowRegular>
+          <FormRowRegular>
             <FormButton>Send</FormButton>
-          </FormRow>
+          </FormRowRegular>
         </Form>
       </div>
     </AboutPageContainer>

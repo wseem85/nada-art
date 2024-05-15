@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { media } from "../utils/helpers";
 import { breakpoints } from "../utils/variables";
+// import { useState } from "react";
 // import video from "videos/video.mp4";
 // const PageTitle = styled.h1`
 //   text-align: center;
@@ -59,6 +60,7 @@ export default function HeroAbout() {
     <HeroAboutContainer>
       {/* <PageTitle>Nada Story</PageTitle> */}
       <Overlay></Overlay>
+
       <video autoPlay loop muted>
         <source
           src="https://ipowdbuqcnnksefmhfzd.supabase.co/storage/v1/object/public/videos/video.mp4?t=2024-05-08T12%3A09%3A57.152Z"

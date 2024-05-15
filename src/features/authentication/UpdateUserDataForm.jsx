@@ -10,13 +10,14 @@ import useUser from "./useUser";
 import { useUpdateUser } from "./useUpdateUser";
 import styled from "styled-components";
 import Heading from "../../ui/Heading";
+import SpinnerMini from "../../ui/SpinnerMini";
 const StyledFormTitle = styled(Heading)`
   margin-bottom: 2rem;
 
   color: var(--color-brand-300);
 `;
 
-function UpdateUserDataForm() {
+function UpdateUserDataForm({ onCloseModal }) {
   // We don't need the loading state, and can immediately use the user data, because we know that it has already been loaded at this point
   const {
     user: {
@@ -24,8 +25,7 @@ function UpdateUserDataForm() {
       user_metadata: { fullName: currentFullName },
     },
   } = useUser();
-  const { user } = useUser();
-  console.log(user);
+
   const { updateUser, isUpdating } = useUpdateUser();
 
   const [fullName, setFullName] = useState(currentFullName);
@@ -38,8 +38,10 @@ function UpdateUserDataForm() {
       { fullName, avatar },
       {
         onSuccess: () => {
-          setAvatar(null);
+          setAvatar(avatar);
           e.target.reset();
+
+          onCloseModal?.();
         },
       }
     );
@@ -85,7 +87,9 @@ function UpdateUserDataForm() {
         >
           Reset
         </Button>
-        <Button disabled={isUpdating}>Update Info</Button>
+        <Button disabled={isUpdating} style={{ minWidth: "14rem" }}>
+          {!isUpdating ? "Update Info" : <SpinnerMini />}
+        </Button>
       </FormRowRegular>
     </Form>
   );

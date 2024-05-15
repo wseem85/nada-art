@@ -17,7 +17,7 @@ export default function useLogin() {
       // console.log(queryClient.getQueryData());
       queryClient.setQueryData(["user"], user.user);
       // console.log(queryClient.getQueryData());
-      navigate("/account", { replace: true });
+      navigate("/settings", { replace: true });
     },
     onError: (err) => {
       toast.error("Email or Password are incorrect");

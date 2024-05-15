@@ -15,7 +15,7 @@ function LoginForm() {
   const [email, setEmail] = useState("engwseem4@gmail.com");
   const [password, setPassword] = useState("qwerty1234");
   const { login, isLoading: isLoggingIn } = useLogin();
-  console.log(isLoggingIn);
+  // console.log(isLoggingIn);
   function handleSubmit(e) {
     e.preventDefault();
     if (!email || !password) return;
@@ -55,7 +55,11 @@ function LoginForm() {
         />
       </FormRowRegular>
       <FormRowRegular>
-        <Button size="large" disabled={isLoggingIn}>
+        <Button
+          size="large"
+          disabled={isLoggingIn}
+          style={{ minWidth: "10rem" }}
+        >
           {!isLoggingIn ? "Log in" : <SpinnerMini />}
         </Button>
       </FormRowRegular>

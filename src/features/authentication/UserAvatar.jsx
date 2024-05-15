@@ -1,6 +1,6 @@
 import styled from "styled-components";
 // import useUser from "./useUser";
-import Logout from "./Logout";
+// import Logout from "./Logout";
 // import Login from "./Login";
 
 const StyledUserAvatar = styled.div`
@@ -35,7 +35,7 @@ export default function UserAvatar({ user }) {
         alt={`Avatar of ${fullName}`}
       />
 
-      <Logout />
+      {/* <Logout /> */}
     </StyledUserAvatar>
   );
 }

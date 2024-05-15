@@ -5,7 +5,7 @@ import useUser from "../features/authentication/useUser";
 import { useEffect } from "react";
 import SpinnerMini from "./SpinnerMini";
 import UserInfo from "../features/users/UserInfo";
-import Login from "../features/authentication/Login";
+// import Login from "../features/authentication/Login";
 
 export const StyledLogo = styled.h3`
   font-size: var(--font-lg);
@@ -28,7 +28,7 @@ export default function Logo() {
     <Row type="horizontal" style={{ gap: "1.6rem" }}>
       <StyledLogo>Nada Art</StyledLogo>
       {isLoadingUser && <SpinnerMini />}
-      {currentUser && isAuthenticated ? <UserInfo user={user} /> : <Login />}
+      {currentUser && isAuthenticated ? <UserInfo user={user} /> : ""}
     </Row>
   );
 }

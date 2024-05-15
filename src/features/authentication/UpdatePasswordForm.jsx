@@ -7,19 +7,28 @@ import Input from "../../ui/Input";
 import { useUpdateUser } from "./useUpdateUser";
 import styled from "styled-components";
 import Heading from "../../ui/Heading";
+import SpinnerMini from "../../ui/SpinnerMini";
 const StyledFormTitle = styled(Heading)`
   margin-bottom: 2rem;
   font-size: 90%;
   color: var(--color-brand-300);
 `;
-function UpdatePasswordForm() {
+function UpdatePasswordForm({ onCloseModal }) {
   const { register, handleSubmit, formState, getValues, reset } = useForm();
   const { errors } = formState;
 
   const { updateUser, isUpdating } = useUpdateUser();
 
   function onSubmit({ password }) {
-    updateUser({ password }, { onSuccess: reset });
+    updateUser(
+      { password },
+      {
+        onSuccess: () => {
+          reset();
+          onCloseModal?.();
+        },
+      }
+    );
   }
 
   return (
@@ -65,7 +74,9 @@ function UpdatePasswordForm() {
         <Button onClick={reset} type="reset" variation="secondary">
           Reset
         </Button>
-        <Button disabled={isUpdating}>Update password</Button>
+        <Button disabled={isUpdating} style={{ minWidth: "16rem" }}>
+          {isUpdating ? <SpinnerMini /> : "Update password"}
+        </Button>
       </FormRowRegular>
     </Form>
   );

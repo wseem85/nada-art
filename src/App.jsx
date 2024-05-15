@@ -12,6 +12,7 @@ import { StoredCartProvider } from "./contexts/StoredCartContext";
 import PageNotFound from "./ui/PageNotFound";
 // import Account from "./pages/Account";
 import Login from "./pages/Login";
+// import Logout from "./pages/Logout";
 import Search from "./pages/Search";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -20,7 +21,7 @@ import { CurrentUserProvider } from "./contexts/CurrentUserProvider";
 import { SearchResultsProvider } from "./contexts/SearchResultsContext";
 import { AllImagesProvider } from "./contexts/AllImagesContext";
 import Signup from "./pages/Signup";
-import Account from "./pages/Account";
+import Settings from "./pages/Settings";
 // import ImagePageLimited from "./pages/ImagePageLimited";
 // import ImagePageExtended from "./pages/ImagePageExtended";
 import ImagePage from "./pages/ImagePage";
@@ -71,9 +72,10 @@ export default function App() {
                         <Route path="search/:id" element={<ImagePage />} />
 
                         <Route path="about" element={<About />} />
-                        <Route path="account" element={<Account />}></Route>
+                        <Route path="settings" element={<Settings />}></Route>
                         <Route path="login" element={<Login />}></Route>
                         <Route path="signup" element={<Signup />}></Route>
+
                         <Route
                           path="account/image/:id"
                           element={<ImagePage />}

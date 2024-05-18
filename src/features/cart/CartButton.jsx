@@ -22,14 +22,14 @@ const HeaderCartButton = styled.button`
     border-radius: 50%;
   }
   ${(props) =>
-    props.cartisopen &&
+    props.$cartisopen &&
     css`
       &::before {
         display: none;
       }
     `}
   ${(props) =>
-    props.cartisempty &&
+    props.$cartisempty &&
     css`
       &::before {
         display: none;
@@ -64,8 +64,8 @@ export default function CartButton() {
   // }, []);
   return (
     <HeaderCartButton
-      cartisopen={cartIsOpen}
-      cartisempty={storedCart.length === 0}
+      $cartisopen={cartIsOpen}
+      $cartisempty={storedCart.length === 0}
       onClick={() => setCartIsOpen((open) => !open)}
     >
       <FaCartArrowDown

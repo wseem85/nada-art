@@ -8,11 +8,11 @@ import Homepage from "./pages/Homepage";
 import About from "./pages/About";
 import { AppNavProvider } from "./contexts/AppNavContext";
 import { StoredCartProvider } from "./contexts/StoredCartContext";
-// import ImagePage from "./pages/ImagePage";
-import PageNotFound from "./ui/PageNotFound";
-// import Account from "./pages/Account";
+
+import PageNotFound from "./pages/PageNotFound";
+
 import Login from "./pages/Login";
-// import Logout from "./pages/Logout";
+
 import Search from "./pages/Search";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -77,7 +77,7 @@ export default function App() {
                         <Route path="signup" element={<Signup />}></Route>
 
                         <Route
-                          path="account/image/:id"
+                          path="settings/image/:id"
                           element={<ImagePage />}
                         />
                       </Route>

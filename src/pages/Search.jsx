@@ -107,7 +107,6 @@ function SearchComponent() {
   const { searchResults, setSearchResults } = useSearchResults();
   // const navigate = useNavigate();
   function onSubmit({ searchBy: searchByForm, title, category, price }) {
-    console.log(title, category, price, searchByForm);
     let result = [];
     if (searchByForm === "title") {
       result = allImages?.filter((image) =>
@@ -122,7 +121,7 @@ function SearchComponent() {
     if (searchByForm === "price") {
       result = allImages?.filter((image) => image.price <= Number(price));
     }
-    console.log(result);
+
     if (!result) setSearchResults([]);
     setSearchResults(result);
   }

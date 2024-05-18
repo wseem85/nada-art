@@ -19,28 +19,39 @@ import Heading from "../../ui/Heading";
 // import { breakpoints } from "../../utils/variables";
 import styled from "styled-components";
 import SpinnerMini from "../../ui/SpinnerMini";
+import Select from "../../ui/Select";
+import { useState } from "react";
 const StyledFormTitle = styled(Heading)`
   margin-bottom: 2rem;
   color: var(--color-brand-300);
 `;
 function EditImageForm({ imageToEdit = {}, onCloseModal }) {
+  const [selectValue, setSelectValue] = useState("In store");
+
   const { id: imageId, ...editValues } = imageToEdit;
   const { src: srcString } = imageToEdit;
-  const soldOutStr = imageToEdit.soldOut === true ? "true" : "false";
+
+  const soldOutStr = imageToEdit.soldOut === true ? "Soldout" : "In store";
+
   const isEditSession = Boolean(imageId);
-  const { register, handleSubmit, reset, formState } = useForm({
-    defaultValues: isEditSession ? { ...editValues, soldOut: soldOutStr } : {},
+  const { register, handleSubmit, formState, reset } = useForm({
+    defaultValues: isEditSession ? { ...editValues, src: srcString } : {},
   });
+
   const errors = formState.errors;
   const { isCreating, createImage } = useCreateImage();
   const { isEditing, editImage } = useEditImage();
+  // console.log(createImage, editImage);
   const isWorking = isEditing || isCreating;
   function onSubmit(data) {
     const { width, height } = data;
+    let soldOut;
 
-    const soldOut = data.soldOut === "true" ? true : false;
+    // const soldOut = selectValue === "In store" ? true : false;
+    if (selectValue === "In store") soldOut = false;
+    else soldOut = true;
+
     const dimenitions = `${width}*${height}`;
-
     const srcType = typeof data.src === "string";
     const src = srcType || data.src?.length === 0 ? srcString : data.src[0];
 
@@ -128,7 +139,7 @@ function EditImageForm({ imageToEdit = {}, onCloseModal }) {
 
       <FormRow
         type="editimageform"
-        label="Discount"
+        label="Discount %"
         error={errors?.discount?.message}
       >
         <Input
@@ -149,7 +160,20 @@ function EditImageForm({ imageToEdit = {}, onCloseModal }) {
         label="sold Out"
         error={errors?.soldOut?.message}
       >
-        <Input
+        <Select
+          id="soldOut"
+          {...register("soldOut", {
+            // required: "this feild is required",
+          })}
+          dValue={soldOutStr}
+          disabled={isWorking}
+          onChange={(e) => setSelectValue(e.target.value)}
+          options={[
+            { label: "In store", value: "In store" },
+            { label: "Soldout", value: "Soldout" },
+          ]}
+        ></Select>
+        {/* <Input
           type="text"
           id="soldOut"
           defaultValue="false"
@@ -161,7 +185,7 @@ function EditImageForm({ imageToEdit = {}, onCloseModal }) {
               "You must insert one of these values (false or true)",
           })}
           disabled={isWorking}
-        />
+        /> */}
       </FormRow>
       <div></div>
 

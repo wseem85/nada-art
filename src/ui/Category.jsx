@@ -7,9 +7,16 @@ import { breakpoints } from "../utils/variables";
 import Heading from "./Heading";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
+import { RxDimensions } from "react-icons/rx";
+import { CgUnavailable } from "react-icons/cg";
+import { FaRegCheckCircle } from "react-icons/fa";
+import { MdOutlinePriceCheck } from "react-icons/md";
+import { CiDiscount1 } from "react-icons/ci";
+
 // import Paragraph from "./Paragraph";
 const StyledCategoryContainer = styled.div`
   /* margin-bottom: 2rem; */
+  /* background-color: var(--color-grey-50); */
 `;
 const CategoryTitle = styled(Heading)`
   position: relative;
@@ -17,6 +24,7 @@ const CategoryTitle = styled(Heading)`
   transform: translateX(-50%);
   transition: background-color 0.3s;
   display: block;
+  margin-top: 1.6rem;
   letter-spacing: var(--letter-space-md);
   line-height: var(--line-md);
   text-transform: uppercase;
@@ -57,7 +65,9 @@ const CategoryImageDescription = styled.div`
   flex-direction: column;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1.3rem;
+
   /* &::after{
     content:' ';
     display:block;
@@ -75,8 +85,9 @@ const CategoryImageDescription = styled.div`
     flex: 1;
   }
   ${media(breakpoints.sm)} {
-    flex-direction: ${({ isimageleft }) =>
-      isimageleft ? "row-reverse" : "row"};
+    flex-direction: ${({ $isimageleft }) =>
+      $isimageleft ? "row-reverse" : "row"};
+    gap: 3rem;
 
     padding: 3rem;
   }
@@ -85,13 +96,14 @@ const ImageContainer = styled.div`
   box-shadow: var(--shadow-pic);
   border-radius: 1rem;
   display: flex;
+  width: 80%;
   align-items: center;
   justify-content: center;
   ${media(breakpoints.sm)} {
     justify-content: ${({ isimageend }) =>
       isimageend ? "flex-end" : "flex-start"};
 
-    padding: 3rem;
+    /* padding: 3rem; */
   }
 `;
 const Image = styled.img`
@@ -103,7 +115,7 @@ const DescriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  align-self: center;
+  align-self: flex-start;
   line-height: 1.6;
   position: relative;
   padding-top: 1rem;
@@ -121,35 +133,53 @@ const DescriptionContainer = styled.div`
   }
 `;
 const Details = styled.div`
-  display: flex;
-  gap: 1.2rem;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  gap: 1.3rem;
+  /* justify-content: center; */
   font-size: 1.2rem;
   color: var(--color-brand-700);
-  font-weight: bold;
-  /* letter-spacing: 2px; */
+
   text-transform: capitalize;
+  & > div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  & svg {
+    font-weight: bold;
+    width: 1.7rem;
+    height: 1.7rem;
+  }
+
   ${media("385px")} {
     font-size: 1.4rem;
   }
   ${media("500px")} {
-    font-size: 1.7rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
   ${media(breakpoints.sm)} {
-    justify-content: flex-start;
+    grid-template-columns: 1fr 1fr;
+    place-items: start;
+    font-weight: bold;
     /* gap: 1.5rem; */
-    font-size: 1.3rem;
+    /* font-size: 1.3rem; */
     /* letter-spacing: 2px; */
   }
   ${media("810px")} {
     font-size: 1.6rem;
     /* letter-spacing: 2px; */
   }
+  ${media(breakpoints.pmd)} {
+    font-size: 2rem;
+  }
   ${media(breakpoints.lg)} {
-    font-size: 1.7rem;
     letter-spacing: 2px;
+    grid-template-columns: unset;
     /* letter-spacing: 2px; */
   }
+
   & > span {
     position: relative;
 
@@ -212,47 +242,83 @@ export default function Category({ category, images }) {
     <StyledCategory>
       <CategoryTitle as="h3">{category}</CategoryTitle>
       <StyledCategoryContainer>
-        {images.map((image, i) => (
-          <CategoryImageDescription key={image.id} isimageleft={i % 2 === 0}>
-            <ImageContainer isimageend={i % 2 === 0}>
+        {images?.map((image, i) => (
+          <CategoryImageDescription key={image.id} $isimageleft={i % 2 === 0}>
+            <ImageContainer $isimageend={i % 2 === 0}>
               <Image src={image.src} />
             </ImageContainer>
             <DescriptionContainer>
               <Details>
-                <span style={{ color: "var(--color-green-700)" }} color="green">
-                  {image.discount
-                    ? formatCurrency(
-                        Math.floor(
-                          image.price - (image.price * image.discount) / 100
-                        )
-                      )
-                    : formatCurrency(image.price)}
-                </span>
-                {image.discount !== 0 && (
+                <div>
+                  <span>
+                    <MdOutlinePriceCheck
+                      style={{ color: "var(--color-green-700)" }}
+                    />
+                  </span>
                   <span
                     style={{ color: "var(--color-green-700)" }}
                     color="green"
                   >
-                    {image.discount}% off
+                    {image.discount
+                      ? formatCurrency(
+                          Math.floor(
+                            image.price - (image.price * image.discount) / 100
+                          )
+                        )
+                      : formatCurrency(image.price)}
                   </span>
+                </div>
+                {image.discount !== 0 && (
+                  <div>
+                    <span>
+                      <CiDiscount1
+                        style={{ color: "var(--color-green-700)" }}
+                      />
+                    </span>
+                    <span
+                      style={{ color: "var(--color-green-700)" }}
+                      color="green"
+                    >
+                      {image.discount}% Sale
+                    </span>
+                  </div>
                 )}
-                <span
-                  style={{ color: "var(--color-indigo-700)" }}
-                  color="indigo"
-                >
-                  {image.width}&quot;&times;{image.height}&quot;
-                </span>
-
-                <span
-                  style={{
-                    color: image.soldOut
-                      ? "var(--color-red-700)"
-                      : "var(--color-green-700)",
-                  }}
-                  color={`${image.soldOut}?'red':'green'`}
-                >
-                  {image.soldOut ? "Sold Out" : "In Store"}{" "}
-                </span>
+                <div>
+                  <span>
+                    <RxDimensions
+                      style={{ color: "var(--color-indigo-700)" }}
+                    />
+                  </span>
+                  <span
+                    style={{ color: "var(--color-indigo-700)" }}
+                    color="indigo"
+                  >
+                    {image.width}&quot;&times;{image.height}&quot;
+                  </span>
+                </div>
+                <div>
+                  <span>
+                    {image.soldOut ? (
+                      <CgUnavailable
+                        style={{ color: "var(--color-red-700)" }}
+                      />
+                    ) : (
+                      <FaRegCheckCircle
+                        style={{ color: "var(--color-green-700)" }}
+                      />
+                    )}
+                  </span>
+                  <span
+                    style={{
+                      color: image.soldOut
+                        ? "var(--color-red-700)"
+                        : "var(--color-green-700)",
+                    }}
+                    color={`${image.soldOut}?'red':'green'`}
+                  >
+                    {image.soldOut ? "Sold Out" : "In Store"}{" "}
+                  </span>
+                </div>
               </Details>
               <div>
                 <DescriptionHeading as="h4">

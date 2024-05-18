@@ -12,7 +12,7 @@ import { MdOutlineFilterNone } from "react-icons/md";
 
 import ButtonIcon from "../ui/ButtonIcon";
 // import Paragraph from "../ui/Paragraph";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // import Spinner from "../ui/Spinner";
 // import Error from "../ui/Error";
 import { useImages } from "../features/images/useImages";
@@ -50,6 +50,7 @@ function OriginalsComponent() {
   const [minMaxPrice, setMinMaxPrice] = useState([]);
   const [filters, setFilters] = useState([]);
   // const queryClient = useQueryClient();
+  const hasRendered = useRef(0);
 
   // const { allImages, isLoading: isLoadingAllImages } = useAllImages();
   const { allImages } = useAllImages();
@@ -61,7 +62,13 @@ function OriginalsComponent() {
   } = useImages();
   useEffect(
     function () {
-      window.scrollTo(0, 700);
+      if (hasRendered.current === 3) {
+        console.log("from here");
+
+        window.scrollTo(0, 700);
+      } else {
+        hasRendered.current = hasRendered.current + 1;
+      }
     },
     [images]
   );

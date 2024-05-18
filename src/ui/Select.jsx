@@ -1,8 +1,11 @@
 import styled from "styled-components";
+import { media } from "../utils/helpers";
+import { breakpoints } from "../utils/variables";
 
 const StyledSelect = styled.select`
-  font-size: 1.4rem;
-  padding: 1.2rem 1.2rem;
+  padding: 0.3rem 0.6rem;
+  box-shadow: var(--shadow-sm);
+  max-width: 8rem;
   border: 1px solid
     ${(props) =>
       props.type === "white"
@@ -11,7 +14,15 @@ const StyledSelect = styled.select`
   border-radius: var(--border-radius-sm);
   background-color: var(--color-grey-0);
   font-weight: 500;
-  box-shadow: var(--shadow-sm);
+  ${media("250px")} {
+    max-width: 12rem;
+  }
+  ${media("350px")} {
+    max-width: unset;
+  }
+  ${media(breakpoints.xs)} {
+    padding: 0.7rem 1.3rem;
+  }
 `;
 
 function Select({ name, onChange, dValue, options }) {
@@ -23,7 +34,11 @@ function Select({ name, onChange, dValue, options }) {
       defaultValue={dValue}
     >
       {options.map((option) => (
-        <option value={option.value} key={option.value}>
+        <option
+          value={option.value}
+          key={option.value}
+          // selected={selectedOption === option.value}
+        >
           {option.label}
         </option>
       ))}

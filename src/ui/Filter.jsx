@@ -17,7 +17,7 @@ import { useFilters } from "../contexts/FiltersContext";
 import { useSearchParams } from "react-router-dom";
 
 // import { useImagesContext } from "../contexts/ImagesContext";
-// import { useImages } from "../features/images/useImages";
+// import { useAllImages } from "../features/images/useAllImages";
 
 const StyledFilter = styled.div`
   /* border: 1px solid var(--color-grey-100); */
@@ -89,7 +89,7 @@ const StyledFilterButton = styled.div`
     /* border: 1px solid var(--color-brand-300); */
     display: none;
     ${(props) =>
-      props.ischecked === true &&
+      props.$ischecked === true &&
       css`
         display: block;
       `}
@@ -174,7 +174,7 @@ function FilterListItem({ filter }) {
     <StyledFilterListItem>
       <FilterHeader onClick={handleClickArrowBtn}>
         <Heading as="h4">{filter.filter}</Heading>
-        <ButtonIcon>
+        <ButtonIcon style={{ backgroundColor: "transparent" }}>
           {opened ? (
             <MdOutlineKeyboardArrowUp />
           ) : (
@@ -233,7 +233,7 @@ function ListItemsContainer({ filters, setShowFilter }) {
   }
   return (
     <>
-      <ul>
+      <ul style={{ paddingLeft: "1rem" }}>
         {filters.map((filter) => (
           <FilterListItem filter={filter} key={filter.filter}></FilterListItem>
         ))}
@@ -245,7 +245,7 @@ function ListItemsContainer({ filters, setShowFilter }) {
 
 function FilterButton({ filter, entry }) {
   const { categories, availabilities, sizes, dispatch } = useFilters();
-  console.log(filter, entry);
+
   const isChoosen =
     categories.includes(entry) ||
     availabilities.includes(entry) ||
@@ -282,7 +282,7 @@ function FilterButton({ filter, entry }) {
     <StyledFilterButton
       key={entry}
       onClick={handleClickFilterButton}
-      ischecked={isChoosen}
+      $ischecked={isChoosen}
     >
       {entry.width ? `${entry.width}x${entry.height}` : entry}
     </StyledFilterButton>
@@ -318,9 +318,17 @@ const StyledRange = styled.input`
   }
 `;
 function RangeInputWithLabel({ entry }) {
+  // const { allImages } = useAllImages();
+  // console.log(entry);
+  // const maxValue = allImages
+  //   ?.map((image) => image.price)
+  //   .sort((a, b) => a - b)
+  //   .pop();
+
   // const [searchParams, setSearchParams] = useSearchParams();
-  const { maxPrice, dispatch } = useFilters();
-  const [currentValue, setCurrentValue] = useState(maxPrice);
+  const { dispatch } = useFilters();
+
+  const [currentValue, setCurrentValue] = useState(entry.max);
   useEffect(
     function () {
       dispatch({ type: "filters/editMaxPrice", payload: currentValue });

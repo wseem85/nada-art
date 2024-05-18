@@ -7,11 +7,17 @@ import NewArtWorks from "../ui/NewArtWorks";
 import PopularCategories from "../ui/PopularCategories";
 import Spinner from "../ui/Spinner";
 import withScrollToTop from "../ui/withScroolToTop";
+import { useEffect } from "react";
 function HomepageComponent() {
   const { allImages: allImagesData, isLoading: isLoadingAllImages } =
     useAllImagesQuery();
   const { allImages, setAllImages } = useAllImagesContext();
-  setAllImages(allImagesData);
+  useEffect(
+    function () {
+      setAllImages(allImagesData);
+    },
+    [allImagesData, setAllImages]
+  );
   if (isLoadingAllImages) return <Spinner />;
   const categories = Array.from(
     new Set(allImages?.map((image) => image.category))

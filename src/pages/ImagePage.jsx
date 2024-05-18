@@ -177,6 +177,7 @@ function ImagePageComponent() {
     handleAddToCart();
     setStoredCart(JSON.parse(localStorage.getItem("cart")));
   }
+
   const {
     id,
     title,

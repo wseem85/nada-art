@@ -144,7 +144,7 @@ function ImageRow({
       >
         {soldOut === true ? "Sold out" : "In store"}
       </Availability>
-      <Link to={`/account/image/${id}`}>
+      <Link to={`/settings/image/${id}`}>
         <ButtonIcon>
           <span> options </span>
           <IoMdOptions />

@@ -25,21 +25,21 @@ const DashSpan = styled.span`
   background-color: var(--color-brand-700);
   position: relative;
   ${(props) =>
-    props.collapsed === false &&
+    props.$collapsed === false &&
     props.childno === 1 &&
     `
       transform: translate(3px,8px)rotate(45deg);
       top:2px;
     `}
   ${(props) =>
-    props.collapsed === false &&
+    props.$collapsed === false &&
     props.childno === 3 &&
     `
       transform: translate(2px,-10px) rotate(-45deg) ;
     
     `}
   ${(props) =>
-    props.collapsed === false &&
+    props.$collapsed === false &&
     props.childno === 2 &&
     `
       display:none
@@ -49,9 +49,9 @@ export default function Hamburger() {
   const { collapsed, setCollapsed } = useAppNav();
   return (
     <HamburgerButton onClick={() => setCollapsed((collapsed) => !collapsed)}>
-      <DashSpan collapsed={collapsed} childno={1}></DashSpan>
-      <DashSpan collapsed={collapsed} childno={2}></DashSpan>
-      <DashSpan collapsed={collapsed} childno={3}></DashSpan>
+      <DashSpan $collapsed={collapsed} childno={1}></DashSpan>
+      <DashSpan $collapsed={collapsed} childno={2}></DashSpan>
+      <DashSpan $collapsed={collapsed} childno={3}></DashSpan>
     </HamburgerButton>
   );
 }

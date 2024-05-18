@@ -70,7 +70,7 @@ const Sale = styled.p`
       color: var(--color-green-700);
     `}
   ${(props) =>
-    props.soldout &&
+    props.$soldout &&
     css`
       color: var(--color-red-700);
     `}
@@ -107,34 +107,18 @@ export default function NewImageBox({ image }) {
     setStoredCart(JSON.parse(localStorage.getItem("cart")));
     // setIsLoading((is) => !is);
   }
-  /*
-  const { currentUser } = useCurrentUser();
-  const userId = currentUser?.id || "";
-  const dispatch = useDispatch();
-  const cart = useSelector(getCart);
 
-  function handleAddToCart() {
-    if (cart.find((el) => el.image_id === id)) {
-      toast("This Product is Already in Your Cart");
-      return;
-    }
-
-    const newProduct = { image_id: id, user_id: userId };
-
-    dispatch(addItem(newProduct));
-  }
-  */
   return (
     <StyledNewImageBox key={image.title}>
       <div style={{ maxWidth: "350px", position: "relative" }}>
         {image.soldOut || image.discount ? (
-          <Sale sale={image.discount} soldout={image.soldOut}>
+          <Sale sale={image.discount} $soldout={image.soldOut}>
             {image.soldOut ? "Sold Out" : `Sale ${image.discount}%`}
           </Sale>
         ) : (
           ""
         )}
-        <Image src={image.src} soldout={image.soldOut} />
+        <Image src={image.src} $soldout={image.soldOut} />
       </div>
       <StyledImageDetailsContainer>
         <h4 style={{ flex: "1", fontSize: "1.55rem" }}>{image.title}</h4>

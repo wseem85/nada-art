@@ -10,7 +10,7 @@ import Heading from "../../ui/Heading";
 import ButtonIcon from "../../ui/ButtonIcon";
 // import { useUserCart } from "./useUserCart";
 // import { useAllImages } from "../images/useAllImages";
-import { useAllImages } from "../images/useAllImages";
+import { useAllImages } from "../../contexts/AllImagesContext";
 // import useUser from "../authentication/useUser";
 import { useCurrentUser } from "../../contexts/CurrentUserProvider";
 // import Spinner from "../../ui/Spinner";
@@ -122,8 +122,6 @@ const Buttons = styled.div`
   }
 `;
 export default function Cart() {
-  console.log("Render");
-  // const cart = useSelector(getCart);
   const { setCartIsOpen } = useAppNav();
   const { storedCart, setStoredCart } = useStoredCart();
 
@@ -142,7 +140,7 @@ export default function Cart() {
     dispatch(clearCart());
     setStoredCart(JSON.parse(localStorage.getItem("cart")));
   }
-  console.log(imagesInCart);
+
   if (error) return <p>Something went wrong</p>;
   if (storedCart?.length === 0)
     return (

@@ -168,14 +168,15 @@ const ResponsiveRow = styled(Row)`
 const SocialMediaLink = styled.a`
   background-color: #fff;
   display: flex;
-  min-width: 11rem;
+  /* font-size: 90%; */
+  /* min-width: 11rem; */
   flex-direction: row;
   gap: 2.3rem;
   align-items: center;
   padding: 0.3rem 0.5rem;
   border-bottom: 1px solid var(--color-grey-300);
   box-shadow: var(--shadow-sm);
-  font-weight: bold;
+  font-weight: 600;
   position: relative;
   &::before {
     content: "";
@@ -258,7 +259,7 @@ export default function About() {
         <div>
           <img src="images/about-2.webp" />
         </div>
-        <div style={{ marginLeft: "1.4rem", marginRight: "1.4rem" }}>
+        <div>
           <Heading as="h2">Behind the Scenes</Heading>
           <Paragraph>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa ad
@@ -271,7 +272,6 @@ export default function About() {
           <Row
             type="horizontal"
             style={{
-              width: "90%",
               gap: "2.5rem",
               justifyContent: "flex-start",
             }}
